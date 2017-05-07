@@ -1,9 +1,9 @@
 #!/bin/sh
-npm run build
+npm run generate
 git branch -D gh-pages 2>/dev/null || true && \
 git branch -D draft 2>/dev/null || true && \
 git checkout -b draft && \
-cp ./CNAME dist/CNAME && \
+cp ./CNAME dist/CNAME 2>/dev/null || true && \
 git add -f dist && \
 git commit -am "Deploy on gh-pages" && \
 git subtree split --prefix dist -b gh-pages && \
