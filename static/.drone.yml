@@ -4,11 +4,12 @@ pipeline:
     commands:
       - npm run install
       - npm run generate
-    when:
-      status: success
-      branch: dev
+
   publish:
     gh_pages:
       source: dist
       remote: origin
       branch: master
+    when:
+      status: success
+      branch: dev
