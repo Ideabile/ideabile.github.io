@@ -63,14 +63,13 @@ module.exports = {
     }
   },
   build: {
+    publicPath: mainUrl,
     extend (config){
       config.node = Object.assign(config.node || {}, {
         fs: 'empty',
         net: 'empty',
         tls: 'empty'
       });
-      config.publicPath = mainUrl
-      return config
     }
   }
 };
