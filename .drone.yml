@@ -1,6 +1,6 @@
 pipeline:
   build:
-    image: node
+    image: node:7
     commands:
       - npm run install
       - npm run generate
