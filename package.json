@@ -26,6 +26,7 @@
     "marked": "^0.3.6",
     "nuxt": "^0.9.9",
     "showdown": "^1.6.4",
+    "showdown-youtube": "^1.2.1",
     "underscore": "^1.8.3",
     "yamljs": "^0.2.8"
   },
