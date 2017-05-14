@@ -69,6 +69,8 @@ module.exports = {
         net: 'empty',
         tls: 'empty'
       });
+      config.publicPath = mainUrl
+      return config
     }
   }
 };
