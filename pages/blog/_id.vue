@@ -1,8 +1,8 @@
 <template>
   <div class="blog">
-    <div v-if="id">
-      <h1 v-html="attributes.title"></h1>
-      <div v-html="body">
+    <div v-if="article">
+      <h1 v-html="article.attributes.title"></h1>
+      <div v-html="article.body">
       </div>
       <div id="disqus_thread"></div>
       <script :src="discussUrl" :data-timestam="timestamp"></script>
@@ -10,7 +10,7 @@
     <div v-else>
       <h1>Thoughts</h1>
       <ul>
-        <li v-for="item in blog">
+        <li v-for="item in all">
           <nuxt-link :to="'/blog/'+item.file">{{ item.attributes.title }}</nuxt-link>
         </li>
       </ul>
@@ -23,28 +23,21 @@
  const experiencesBasePathUrl = 'http://localhost:3051/articles/'
 
  export default{
-   async data ( { route, store, error, env, params } ) {
+   data ( { route, store, error, env, params } ) {
      let data = {
-       attributes: { title: '', body: ''},
-       body: '',
-       id: params.id || false,
-       blog: env.content.blog.reverse(),
+       article: null,
+       all: env.content.blog.reverse(),
        discussUrl: 'https://ideabile.disqus.com/embed.js',
        now: new Date()
      }
-     let res
-     let url = route.params.id ? `${experiencesBasePathUrl}${route.params.id}.md` : `${experiencesBasePathUrl}`
 
-     try{
-       res = await axios.get(url)
-     }catch(err){
-       if (!err.response || err.response.status !== 404) {
-         return error({ statusCode: 500, message: 'Error' })
-       }
-       return error({ statusCode: 404, message: 'Not found' })
+
+     if(params.id){
+       data.article = env.content.blog.filter( article => {
+         return article.file.indexOf(params.id) > -1
+       })[0]
      }
 
-     data = Object.assign({}, data, res.data)
      return data
    }
  }

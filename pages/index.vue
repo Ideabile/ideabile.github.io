@@ -32,7 +32,7 @@
  export default {
    layout: 'landing',
    data({res}){
-     res.setHeader('Access-Control-Allow-Origin', '*')
+     if(res) res.setHeader('Access-Control-Allow-Origin', '*')
      return new Promise( (resolve, rej) => {
        Jimp.read('http://avatars1.githubusercontent.com/u/651290?v=3&s=40', (err, img) => {
          resolve({
@@ -41,6 +41,8 @@
        })
      }).then(data => {
        return data
+     }).catch(err => {
+       return {}
      })
    },
    components: {

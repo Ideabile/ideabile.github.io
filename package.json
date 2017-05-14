@@ -11,10 +11,10 @@
   },
   "scripts": {
     "start-content-server": "nodemon utils/server.js --ignore node_modules --ignore .nuxt -e js",
-    "dev": "npm run start-content-server & nuxt",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "npm run start-content-server & nuxt generate"
+    "generate": "nuxt generate"
   },
   "author": "",
   "license": "ISC",
