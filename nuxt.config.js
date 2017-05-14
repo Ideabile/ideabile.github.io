@@ -45,6 +45,9 @@ module.exports = {
     ],
     link: [
       {href: `${mainUrl}/main.css`, type: "text/css", rel: "stylesheet", media: "all" }
+    ],
+    script: [
+      { src: `${mainUrl}/ga.js` }
     ]
   },
   env: {
