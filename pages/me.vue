@@ -11,8 +11,7 @@
 		If you have not heard of this <b>Mediterranean paradise</b>, <a href="https://www.google.com/search?q=lampedusa&amp;oq=lampedusa&amp;aqs=chrome..69i64j0l5.6893j0j7&amp;sourceid=chrome&amp;espv=210&amp;es_sm=91&amp;ie=UTF-8" target="_blank"><b>check it out</b></a>!<br><br>
 
 		Out of my work the most interesting thing to me are people. I love to discover new cultures and meet amazing individuals, and talk with them about something, even about the weather :)
-
-
+  </div>
 </template>
 <style>
  .me{
