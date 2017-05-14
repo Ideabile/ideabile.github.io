@@ -77,7 +77,6 @@
  }
 
  .passions {
-   float: left;
    overflow: hidden;
  }
 
