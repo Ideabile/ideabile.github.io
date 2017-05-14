@@ -25,6 +25,3 @@
    }
  }
 </script>
-<style>
- @import 'https://fonts.googleapis.com/css?family=VT323';
-</style>
