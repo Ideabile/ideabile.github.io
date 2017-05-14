@@ -7,8 +7,8 @@ pipeline:
     when:
       status: success
       branch: dev
-publish:
-  gh_pages:
-    source: dist
-    remote: origin
-    branch: master
+  publish:
+    gh_pages:
+      source: dist
+      remote: origin
+      branch: master
