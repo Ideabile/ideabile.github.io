@@ -11,6 +11,3 @@ pipeline:
       source: dist
       remote: origin
       branch: master
-    when:
-      status: success
-      branch: dev
