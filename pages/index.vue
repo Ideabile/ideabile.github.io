@@ -31,7 +31,7 @@
  import halftone from '../components/halftone'
  export default {
    layout: 'landing',
-   data({res}){
+   asyncData({res}){
      if(res) res.setHeader('Access-Control-Allow-Origin', '*')
      return new Promise( (resolve, rej) => {
        Jimp.read('http://avatars1.githubusercontent.com/u/651290?v=3&s=40', (err, img) => {

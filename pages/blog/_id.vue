@@ -5,7 +5,7 @@
       <div v-html="article.body">
       </div>
       <div id="disqus_thread"></div>
-      <script :src="discussUrl" :data-timestam="timestamp"></script>
+      <script :src="discussUrl" :data-timestamp="now"></script>
     </div>
     <div v-else>
       <h1>Thoughts</h1>
@@ -23,7 +23,7 @@
  const experiencesBasePathUrl = 'http://localhost:3051/articles/'
 
  export default{
-   data ( { route, store, error, env, params } ) {
+   asyncData ( { route, store, error, env, params } ) {
      let data = {
        article: null,
        all: env.content.blog.reverse(),

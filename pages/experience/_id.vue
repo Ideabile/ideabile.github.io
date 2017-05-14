@@ -25,8 +25,7 @@
    components : {
      experience
    },
-   data ( { route, store, error, env, params } ) {
-     // es-lint: disable
+   asyncData ( { route, store, error, env, params } ) {
      let data = {
        experience: null,
        all: env.content.experiences.reverse()

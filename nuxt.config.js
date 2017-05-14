@@ -33,6 +33,9 @@ let routesArticles =  listArticles.map((obj) => {
 routesExperiences.push({id: 'index'});
 routesArticles.push({id: 'index'});
 
+let Routes = []
+Routes = Routes.concat(routesArticles.map(obj => `/blog/${obj.id}`))
+Routes = Routes.concat(routesExperiences.map(obj => `/experience/${obj.id}`))
 
 module.exports = {
   head: {
@@ -60,7 +63,8 @@ module.exports = {
       '/': [
         {id: 'index'}
       ]
-    }
+    },
+    routes: Routes
   },
   build: {
     publicPath: mainUrl,
