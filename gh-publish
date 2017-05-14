@@ -1,4 +1,5 @@
 #!/bin/sh
+BASE_URL="https://ideabile.github.io/me/"
 npm run generate
 git branch -D gh-pages 2>/dev/null || true && \
 git branch -D draft 2>/dev/null || true && \

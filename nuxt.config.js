@@ -2,6 +2,7 @@ var fs = require('fs');
 const { join } = require('path');
 var _ = require('underscore');
 var utilsContent = require('./utils/content');
+const mainUrl = process.env.BASE_URL || 'http://localhost:3050';
 
 let listArticles = (()=>{
   return _.filter(fs.readdirSync(join(__dirname, '/content/articles'), (item)=>{
@@ -32,6 +33,7 @@ let routesArticles =  listArticles.map((obj) => {
 routesExperiences.push({id: 'index'});
 routesArticles.push({id: 'index'});
 
+
 module.exports = {
   head: {
     meta: [
@@ -39,10 +41,11 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
     link: [
-      {href: "/main.css", type: "text/css", rel: "stylesheet", media: "all" }
+      {href: `${mainUrl}/main.css`, type: "text/css", rel: "stylesheet", media: "all" }
     ]
   },
   env: {
+    baseUrl: mainUrl,
     content: {
       me: utilsContent.getPage('me.md'),
       experiences: listExperiences,
