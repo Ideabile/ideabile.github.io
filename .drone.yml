@@ -4,6 +4,7 @@ pipeline:
     commands:
       - npm install
       - npm run generate
+
 publish:
   gh_pages:
     source: dist
