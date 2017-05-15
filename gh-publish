@@ -1,11 +1,11 @@
 #!/bin/sh
-export BASE_URL="https://ideabile.github.io/"
+export BASE_URL="https://ideabile.github.io/";
+git config --global user.email "drone@ideabile.com" && \
+git config --global user.name "Ideabile CI" && \
 git branch -D master 2>/dev/null || true && \
 git branch -D draft 2>/dev/null || true && \
 git checkout -b draft && \
-git config --global user.email "drone@ideabile.com" && \
-git config --global user.name "Ideabile CI" && \
 git add -f dist && \
 git commit -am "Deploy on gh-pages" && \
 git subtree split --prefix dist -b master && \
-git push --force "https://${GH_TOKEN}@github.com/Ideabile/ideabile.github.io.git" master:master > /dev/null 2>&1 > /dev/null 2>&1
+git push --f "https://${GH_TOKEN}@github.com/Ideabile/ideabile.github.io.git" master:master > /dev/null 2>&1
