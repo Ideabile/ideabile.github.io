@@ -1,5 +1,6 @@
 #!/bin/sh
-export BASE_URL="https://ideabile.github.io/";
+export BASE_URL="https://ideabile.github.io";
+npm run generate && \
 git config --global user.email "drone@ideabile.com" && \
 git config --global user.name "Ideabile CI" && \
 git branch -D master 2>/dev/null || true && \
