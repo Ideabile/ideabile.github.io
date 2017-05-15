@@ -2,12 +2,14 @@
 ORIGIN="https://${GH_TOKEN}@github.com/Ideabile/ideabile.github.io.git";
 export BASE_URL="https://ideabile.github.io/";
 
-npm run generate && \
-git config --global user.email "drone@ideabile.com" && \
-git config --global user.name "Ideabile CI" && \
-git branch -D master 2>/dev/null || true && \
-git branch -D draft 2>/dev/null || true && \
-git checkout -b draft && \
-git add -f dist && \
-git commit -am "Deploy on gh-pages" && \
-git push origin `git subtree split --prefix dist master`:master --force
+git config --global user.email "drone@ideabile.com"
+git config --global user.name "Ideabile CI"
+
+git branch -D master 2>/dev/null || true
+git branch -D draft 2>/dev/null || true
+git checkout -b draft
+git add -f dist
+git commit -am "Deploy on gh-pages"
+git push origin :master
+git subtree split --prefix dist -b master
+git push --force $ORIGIN master:master
