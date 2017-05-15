@@ -1,5 +1,5 @@
 #!/bin/sh
-export BASE_URL="https://ideabile.github.io";
+export BASE_URL="https://ideabile.github.io/";
 npm run generate && \
 git config --global user.email "drone@ideabile.com" && \
 git config --global user.name "Ideabile CI" && \
@@ -9,4 +9,4 @@ git checkout -b draft && \
 git add -f dist && \
 git commit -am "Deploy on gh-pages" && \
 git subtree split --prefix dist -b master && \
-git push -f "https://${GH_TOKEN}@github.com/Ideabile/ideabile.github.io.git" master:master > /dev/null 2>&1
+git push --force "https://${GH_TOKEN}@github.com/Ideabile/ideabile.github.io.git" master > /dev/null 2>&1

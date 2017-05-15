@@ -44,10 +44,10 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
     link: [
-      {href: `${mainUrl}/main.css`, type: "text/css", rel: "stylesheet", media: "all" }
+      {href: `${mainUrl}main.css`, type: "text/css", rel: "stylesheet", media: "all" }
     ],
     script: [
-      { src: `${mainUrl}/ga.js` }
+      { src: `${mainUrl}ga.js` }
     ]
   },
   env: {
