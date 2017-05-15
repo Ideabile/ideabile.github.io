@@ -5,6 +5,7 @@ export BASE_URL="https://ideabile.github.io/";
 git config --global user.email "drone@ideabile.com"
 git config --global user.name "Ideabile CI"
 
+npm run generate
 git branch -D master 2>/dev/null || true
 git branch -D draft 2>/dev/null || true
 git checkout -b draft
