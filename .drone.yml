@@ -5,7 +5,7 @@ pipeline:
       - GH_TOKEN=${GH_TOKEN}
     commands:
       - npm install
-      - ./gh-publish ${GH_TOKEN}
+      - ./gh-publish ${GH_TKEN}
 
 publish:
   gh_pages:
