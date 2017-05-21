@@ -4,8 +4,8 @@
       <h1 v-html="article.attributes.title"></h1>
       <div v-html="article.body">
       </div>
-      <div id="disqus_thread"></div>
-      <script :src="discussUrl" :data-timestamp="now"></script>
+      <!-- <div id="disqus_thread"></div> -->
+      <!-- <script :src="discussUrl" :data-timestamp="now"></script> -->
     </div>
     <div v-else>
       <h1>Thoughts</h1>
@@ -19,10 +19,17 @@
 </template>
 
 <script>
+ import Vue from 'vue'
  import axios from 'axios'
  const experiencesBasePathUrl = 'http://localhost:3051/articles/'
 
  export default{
+   mounted(){
+     this.mountComponent();
+   },
+   updated(){
+     this.mountComponent()
+   },
    asyncData ( { route, store, error, env, params } ) {
      let data = {
        article: null,
@@ -39,6 +46,22 @@
      }
 
      return data
+   },
+   methods: {
+     mountComponent: function(){
+       if(!this.article) return false;
+       for(let k in this.article.attributes.component){
+         let component = this.article.attributes.component[k]
+         var _component = require(`./../../components/${component.name}.vue`)
+         let node = document.createElement('div')
+         document.querySelector(component.el).appendChild(node)
+         let $component = new Vue(_component)
+         for(let i in component.data){
+           $component[i] = component.data[i]
+         }
+         $component.$mount(node)
+       }
+     }
    }
  }
 </script>

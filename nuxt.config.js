@@ -2,7 +2,7 @@ var fs = require('fs');
 const { join } = require('path');
 var _ = require('underscore');
 var utilsContent = require('./utils/content');
-const mainUrl = process.env.BASE_URL || 'http://localhost:3050';
+const mainUrl = process.env.BASE_URL || 'http://localhost:3050/';
 
 let listArticles = (()=>{
   return _.filter(fs.readdirSync(join(__dirname, '/content/articles'), (item)=>{
@@ -49,6 +49,9 @@ module.exports = {
     script: [
       { src: `${mainUrl}ga.js` }
     ]
+  },
+  router: {
+    middleware: ['accessHeader']
   },
   env: {
     baseUrl: mainUrl,

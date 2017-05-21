@@ -21,6 +21,8 @@
 </style>
 
 <script>
+ import Jimp from 'jimp'
+
  function getResizedSizes(w, h, max){
    let greater = w >= h ? w : h
    let scale = max / greater
@@ -36,30 +38,51 @@
  }
  export default {
 
-   props: ['img'],
+   props: ['url'],
 
    data(){
      return {
        width: 0,
        height: 0,
-       items: [],
-       web: true
+       web: true,
+       items: []
      }
    },
 
-   mounted(){
-     this.items = this.getBrightnessData(this.img)
-     this.setWindowSizes( window )
+   asyncData(context){
+     if(context.isServer){
+       this.getImg().then( (data) => {
+        this.img = data.img
+        resolve({
+          width: data.img.bitmap.width || 0,
+          height: data.img.bitmap.height || 0,
+          items: this.getBrightnessData(this.img),
+          web: true
+        })
+      })
+     }
    },
 
    methods: {
 
-     getViewBox(){
-       let greater = this.height
-       if(this.height >= this.width - 50) return '-0.5 -0.5 40 40'
+     getImg(){
+       return new Promise( (resolve, rej) => {
+         Jimp.read(this.url, (err, img) => {
+           console.log(err)
+           resolve({
+             img: img
+           })
+         })
+       }).then(data => {
+         return data
+       }).catch(err => {
+         return err
+       })
+     },
 
-       let toResize = (this.width / this.height).toFixed(2)
-       return `-0.5 -0.5 40 40`
+     getViewBox(){
+       if(!this.img) return `-0.5 -0.5 0 0`
+       return `-0.5 -0.5 ${this.img.bitmap.width} ${this.img.bitmap.height}`
      },
 
      setWindowSizes(w){
@@ -95,7 +118,7 @@
          let rgba = this.getRgba(img.bitmap.data, i)
          if ( this.isInvisible(rgba) ) return
          let lum = this.getLuminosity(rgba);
-         if(lum < 1) lum = 1;
+         if(lum < 0.2) lum = 0.2;
          lums[lum] = lums[lum] || []
          lums[lum].push({ x, y });
        })
@@ -103,7 +126,6 @@
      },
 
      getBrightnessData(img) {
-
        if(img.scan) return this.useScanMethod(img)
 
        let lums = {};
