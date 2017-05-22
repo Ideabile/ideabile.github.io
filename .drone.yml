@@ -3,14 +3,6 @@ pipeline:
     image: node:latest
     secrets:
       - GH_TOKEN
-    environment:
-      - GH_TOKEN=${GH_TOKEN}
     commands:
       - npm install
       - ./gh-publish ${GH_TOKEN}
-
-publish:
-  gh_pages:
-    source: dist
-    remote: origin
-    branch: master
