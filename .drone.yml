@@ -7,3 +7,5 @@ pipeline:
     commands:
       - npm install
       - ./gh-publish ${GH_TOKEN}
+    when:
+      branch: dev
