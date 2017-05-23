@@ -2,6 +2,8 @@ pipeline:
   build:
     image: node:latest
     secrets: [ GH_TOKEN ]
+    environment:
+      - GH_TOKEN=${GH_TOKEN}
     commands:
       - npm install
       - ./gh-publish ${GH_TOKEN}
