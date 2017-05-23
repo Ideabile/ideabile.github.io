@@ -1,5 +1,5 @@
 #!/bin/sh
-ORIGIN="https://${1}@github.com/Ideabile/ideabile.github.io.git";
+ORIGIN="https://${GH_TOKEN}@github.com/Ideabile/ideabile.github.io.git";
 export BASE_URL="https://ideabile.github.io/";
 
 git config --global user.email "drone@ideabile.com"
