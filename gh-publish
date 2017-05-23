@@ -11,4 +11,5 @@ git branch -D draft 2>/dev/null || true
 git checkout -b draft
 git add -f dist
 git commit -am "Deploy on gh-pages"
-git subtree push --prefix dist $ORIGIN master
+git subtree split --prefix dist master
+git push --force $ORIGIN master:master
