@@ -1,0 +1,1 @@
+<html><body>You are being <a href="https://raw.githubusercontent.com/X1011/git-directory-deploy/master/deploy.sh">redirected</a>.</body></html>
