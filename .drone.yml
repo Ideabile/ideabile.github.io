@@ -4,8 +4,8 @@ pipeline:
     secrets: [ GH_TOKEN ]
     environment:
       - GIT_DEPLOY_REPO="https//${GH_TOKEN}@github.com/Ideabile/ideabile.github.io.git"
-      - GIT_DEPLOY_BRANCH="master"
-      - GIT_DEPLOY_DIR="dist"
+      - GIT_DEPLOY_BRANCH=master
+      - GIT_DEPLOY_DIR=./dist
       - GIT_DEFAULT_USERNAME="Ideabile CI"
       - GIT_DEFAULT_EMAIL="drone@ideabile.com"
     commands:
