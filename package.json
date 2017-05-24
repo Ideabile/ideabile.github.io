@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "forever": "^0.15.3",
+    "gh-pages": "^1.0.0",
     "nodemon": "^1.11.0"
   }
 }

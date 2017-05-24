@@ -1,0 +1,11 @@
+#!/usr/bin/node
+
+var gh = require('gh-pages')
+gh.publish('dist', {
+  branch: 'master',
+  repo: `https://${process.env.GH_TOKEN}@github.com/Ideabile/ideabile.github.io.git`,
+  user: {
+    name: 'ideabile-ci',
+    email: 'drone@ideabile.com'
+  }
+});
