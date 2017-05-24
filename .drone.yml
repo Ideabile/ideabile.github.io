@@ -4,6 +4,7 @@ pipeline:
     secrets: [ GH_TOKEN ]
     environment:
       - GH_TOKEN=${GH_TOKEN}
+      - BASE_URL="http://ideabile.com/"
     commands:
       - npm install
       - npm run generate
