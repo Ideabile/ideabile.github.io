@@ -14,4 +14,12 @@ post_type: post
 
 # LinkRoll #1 ~ Web Components
 
-Looking for inspirations for [MangiaFuoco](https://github.com/M3kH/mangiafuoco/tree/master/test) **[node-machine Project](http://node-machine.org/)** In the simplest sense, Machines are Javascript functions wrapped in a standard interface. **[Blockify PHP | Just code, don’t repeat](http://blockify.co/)** **[Web-components like AngularJS directives - JDriven Blog](http://blog.jdriven.com/2014/11/web-component-like-directives/)** If we look at Angular it already supports html imports and isolated scripts through it’s directive approach. This means we can already create custom components by using directives.
+Looking for inspirations for [MangiaFuoco](https://github.com/M3kH/mangiafuoco/tree/master/test) 
+
+**[node-machine Project](http://node-machine.org/)** 
+In the simplest sense, Machines are Javascript functions wrapped in a standard interface. 
+
+**[Blockify PHP | Just code, don’t repeat](http://blockify.co/)** 
+
+**[Web-components like AngularJS directives - JDriven Blog](http://blog.jdriven.com/2014/11/web-component-like-directives/)** 
+If we look at Angular it already supports html imports and isolated scripts through it’s directive approach. This means we can already create custom components by using directives.
