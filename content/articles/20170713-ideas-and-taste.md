@@ -15,8 +15,8 @@ post_type: post
 
 I get exited when I'm discussing something. Expecially when is something that I _trully belive_.
 
-Can happen while I'm confronting my self to an Idea, I will be sceptical about.
-When I start to think about it, even if is my own, I question it.
+It can happen that while I'm confronting my self to an Idea, I will be sceptical about it.
+When I start to think at it, even if is my own one, I question it.
 
 Not sure if these question are valid for any kind of topics, but to get an idea:
 > * What are the trades? Gains vs Pays? Why is worth it?
