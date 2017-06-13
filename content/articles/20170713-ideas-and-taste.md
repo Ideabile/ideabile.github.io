@@ -57,7 +57,7 @@ The only thing that I hope isn't being the _imbecile_ that looks to the details;
 So to the approach of yesterday after having a discussion that almost end up in taste arguments, I try to prove to me that the way I write code today is better than what it was yesterday.
 
 I end up doing this: *10 line sugar*
-<p data-height="265" data-theme-id="0" data-slug-hash="XgKKmV" data-default-tab="result" data-user="M3kH" data-embed-version="2" data-pen-title="bgDisco" class="codepen">See the Pen <a href="https://codepen.io/M3kH/pen/XgKKmV/">bgDisco</a> by Mauro Mandracchia (<a href="https://codepen.io/M3kH">@M3kH</a>) on <a href="https://codepen.io">CodePen</a>.</p>
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+<iframe height='265' scrolling='no' title='bgDisco' src='//codepen.io/M3kH/embed/XgKKmV/?height=265&theme-id=0&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/M3kH/pen/XgKKmV/'>bgDisco</a> by Mauro Mandracchia (<a href='https://codepen.io/M3kH'>@M3kH</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 *What you can do in 10 line of JS?*
