@@ -1,38 +1,23 @@
-var fs = require('fs');
+const fs = require('fs');
 const { join } = require('path');
-var _ = require('underscore');
-var utilsContent = require('./utils/content');
+const _ = require('underscore');
+const utilsContent = require('./utils/content');
 const mainUrl = process.env.BASE_URL || 'http://localhost:3050/';
+const experiences = require('./utils/content/experiences')
+const articles = require('./utils/content/articles')
 
-let listArticles = (()=>{
-  return _.filter(fs.readdirSync(join(__dirname, '/content/articles'), (item)=>{
-    return item.indexOf('.md') > -1
-  })).map( (page) => {
-    return Object.assign({}, utilsContent.getPage(`articles/${page}`) || {}, {
-      file: page.replace('.md','')
-    });
-  });
-})();
 
-let listExperiences = (()=>{
-  return _.filter(fs.readdirSync(join(__dirname, '/content/experiences'), (item)=>{
-    return item.indexOf('.md') > -1
-  })).map( (page) => {
-    return Object.assign({}, utilsContent.getPage(`experiences/${page}`) || {}, {
-      file: page.replace('.md','')
-    });
-  });
-})();
-
-let routesExperiences = listExperiences.map((obj) => {
+// Generate Articles and Experiencs links based on file name
+let routesExperiences = experiences.contentList.map((obj) => {
   return {id: obj.file}
 });
-let routesArticles =  listArticles.map((obj) => {
+let routesArticles =  articles.contentList.map((obj) => {
   return {id: obj.file}
 });
 routesExperiences.push({id: 'index'});
 routesArticles.push({id: 'index'});
 
+// Add Articles and Experiences on the list of roots
 let Routes = []
 Routes = Routes.concat(routesArticles.map(obj => `/blog/${obj.id}`))
 Routes = Routes.concat(routesExperiences.map(obj => `/experience/${obj.id}`))
@@ -54,8 +39,8 @@ module.exports = {
     baseUrl: mainUrl,
     content: {
       me: utilsContent.getPage('me.md'),
-      experiences: listExperiences,
-      blog: listArticles
+      experiences: experiences.contentList,
+      blog: articles.contentList
     }
   },
   loading: false,
