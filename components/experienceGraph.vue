@@ -1,9 +1,11 @@
 <template>
-  <svg :viewBox="getViewBox(items, columns)" preserveAspectRatio="xMinYMid slice">
+  <svg :viewBox="getViewBox" preserveAspectRatio="xMinYMid slice">
     <g stroke="#000" fill="none">
-      <g v-for="item, lum in lums">
-        <path :stroke-width="lum" stroke-linecap="round" :d="getPathData(item)" />
-        <text v-for="label in item" font-size="18" text-anchor="middle" width="80" :x="label.x" :y="(label.y * 1.2 + 65) " fill="black">{{ getItemLabel().name }}</text>
+      <g v-for="item in svgElements">
+        <circle :cx="item.el.x" :cy="item.el.y" :r="item.el.size" fill="black"/>
+        <foreignObject :x="item.el.x - 40" :y="item.el.y + 50" width="80" height="80">
+          <p :xmlns="doct" style="text-align: center; font-size: 18px">{{ item.name }}</p>
+        </foreignObject>
       </g>
     </g>
   </svg>
@@ -27,62 +29,49 @@
 
    data(){
      return {
+       doct: 'http://www.w3.org/1999/xhtml',
        width: 0,
        height: 0,
-       columns: 5,
-       lums: this.getItems(this.items, 5),
-       web: true
+       columns: 5
      }
    },
 
-   methods: {
+   computed: {
+     svgElements() {
+       let items = this.items
+       let columns = this.columns
+       let max = this.getMaxHours(items)
 
-     getItemLabel() {
-       this.currentItem = this.currentItem || 0
-       let item = this.items[this.currentItem]
-       this.currentItem++
-       if (this.currentItem === this.items.length) {
-         this.currentItem = 0
-       }
-       return item
-     },
-
-     getViewBox( data, columns ) {
-       let totalRows = Math.ceil(data.length / columns);
-       return `-0.5 -0.5 800 ${totalRows * 100 + 200}`
-     },
-
-     getItems(data, columns) {
-       let lums = {}
        let row = 0
 
-       // Flat the Hours and get the max
-       let allHours = data.map(i => i.hours || 0 )
-       let max = Math.max(...allHours)
+       for(let k in items){
+         let item = items[k]
+         let column = k % columns
 
-       for(let i = 0; i<data.length; i++){
-         let size = data[i].hours / max * 80 + 10
-         let step = i % columns;
-         if(step === 0){
-           row = row + 100
-         }
-         let x = ((i % columns) + 1) * 150  - 50
-         let y = row
-
-         lums[size] = lums[size] || []
-         lums[size].push({ x, y })
+         if(column === 0) row++
+         item.el = this.getCircle(max, item.hours, column, row)
+         items[k] = item
        }
 
-       return lums
+       return items
      },
 
-     getPathData(item){
-       let path = [];
+     getViewBox() {
+       let totalRows = Math.ceil(this.items.length / this.columns);
+       return `-0.5 -0.5 800 ${totalRows * 160 + 60}`
+     }
 
-       for(let k in item){
-         path.push(`M${item[k].x} ${item[k].y * 1.2}z`)
-       }
-       return path.join(' ')
+   },
+
+   methods: {
+     getMaxHours(data) {
+       return Math.max(...data.map(i => i.hours || 0))
+     },
+     getCircle(max, hours, column, row){
+         let size = hours / max * 50 + 10
+         let x = (column + 1) * 150 - 50
+         let y = row * 160 - 60
+         return {x, y, size}
      }
    }
  }

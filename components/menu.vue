@@ -3,28 +3,9 @@
     <nuxt-link to="/blog">Thoughts</nuxt-link>
     <nuxt-link to="/experience">Experiences</nuxt-link>
     <nuxt-link to="/me">Me</nuxt-link>
+    <nuxt-link to="/cv">CV</nuxt-link>
   </div>
 </template>
-<script>
- export default {
-   data(context){
-     if(context && context.isClient){
-       return {
-         path: this.getPath()
-       }
-     }
-
-     return {
-       path: ''
-     }
-   },
-   methods: {
-     getPath(){
-       return window.location.path.split('/').slice(1)
-     }
-   }
- }
-</script>
 <style>
  .menu {
    overflow: hidden;

@@ -90,4 +90,8 @@
    display: inline-block;
    margin-bottom: 10px;
  }
+ @media print {
+   .passions { display: none; }
+   .aka{ display: none; }
+ }
 </style>

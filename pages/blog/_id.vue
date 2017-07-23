@@ -20,25 +20,28 @@
 
 <script>
  import axios from 'axios'
- const experiencesBasePathUrl = 'http://localhost:3051/articles/'
+ import GetApiUrl from './../../utils/GetApiUrl'
 
  export default{
-   asyncData ( { route, store, error, env, params } ) {
-     let data = {
-       article: null,
-       all: env.content.blog.reverse(),
+   async asyncData ({ env, isClient, params }) {
+     if(params.id === 'index') params.id = false
+     let pathUrl = !params.id ? 'articles/all' : `articles/${params.id}`
+
+     let { data } = await axios.get(GetApiUrl(env, isClient, pathUrl))
+
+     return {
        discussUrl: 'https://ideabile.disqus.com/embed.js',
-       now: new Date()
+       now: new Date(),
+       article: params.id ? data : null,
+       all: !params.id ? data.articles.reverse() : null
+     }
+   },
+   head () {
+     if (this.article) return {
+       title: this.article.attributes.title
      }
 
-
-     if(params.id){
-       data.article = env.content.blog.filter( article => {
-         return article.file.indexOf(params.id) > -1
-       })[0]
-     }
-
-     return data
+     return { title: 'Thoughts' }
    }
  }
 </script>

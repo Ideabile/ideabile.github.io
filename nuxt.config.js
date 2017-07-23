@@ -5,7 +5,15 @@ const utilsContent = require('./utils/content');
 const mainUrl = process.env.BASE_URL || 'http://localhost:3050/';
 const experiences = require('./utils/content/experiences')
 const articles = require('./utils/content/articles')
+const isGenerating = JSON.parse(process.env.npm_config_argv).original.indexOf('generate') > -1
+const server = require('./utils/watchServer.js')
 
+server.start()
+
+// Start the watcher for server
+if (!isGenerating) {
+  server.watch()
+}
 
 // Generate Articles and Experiencs links based on file name
 let routesExperiences = experiences.contentList.map((obj) => {
@@ -24,25 +32,27 @@ Routes = Routes.concat(routesExperiences.map(obj => `/experience/${obj.id}`))
 
 module.exports = {
   head: {
+    title: 'Mauro Mandracchia',
+    titleTemplate: '%s - Ideabile ~ Software and Communication Solutions',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
     link: [
       {href: `${mainUrl}main.css`, type: "text/css", rel: "stylesheet", media: "all" }
-    ],
-    script: [
-      { src: `${mainUrl}ga.js` }
     ]
   },
   env: {
     baseUrl: mainUrl,
+    generated: isGenerating,
+    apiUrl: 'http://localhost:3051/',
     content: {
-      me: utilsContent.getPage('me.md'),
-      experiences: experiences.contentList,
-      blog: articles.contentList
+      me: utilsContent.getPage('me.md')
     }
   },
+  plugins: [
+    { src: '~plugins/ga.js', ssr: false }
+  ],
   loading: false,
   generate: {
     routeParams:{

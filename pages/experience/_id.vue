@@ -1,9 +1,7 @@
 <template>
   <div class="experiences">
     <div v-if="experience">
-      <h1 v-html="experience.attributes.title"></h1>
-      <experience v-bind:items="experience.attributes.details"/>
-      <div v-html="experience.body"></div>
+      <experience :experience="experience" />
     </div>
     <div v-else>
       <h1>Experiences</h1>
@@ -18,33 +16,35 @@
 
 <script>
  import axios from 'axios'
- import experience from './../../components/experienceGraph.vue'
- const experiencesBasePathUrl = 'http://localhost:3051/experiences'
+ import experience from './../../components/experience.vue'
+ import donut from './../../components/svg/donut.vue'
+ import GetApiUrl from './../../utils/GetApiUrl'
 
  export default{
    components : {
      experience
    },
-   asyncData ( { route, store, error, env, params } ) {
-     let data = {
-       experience: null,
-       all: env.content.experiences.reverse()
-     }
+   async asyncData ({ env, isClient, params }) {
+     if(params.id === 'index') params.id = false
+     let pathUrl = !params.id ? 'experiences/all' : `experiences/${params.id}`
 
-     if(params.id){
-       data.experience = env.content.experiences.filter( experience => {
-         return experience.file.indexOf(params.id) > -1
-       })[0]
-     }
+     let { data } = await axios.get(GetApiUrl(env, isClient, pathUrl))
 
-     return data
+     return {
+       experience: params.id ? data : null,
+       all: !params.id ? data.experiences.reverse() : null
+     }
    }
  }
 </script>
 
-<style scoped>
+<style>
  .experiences{
    padding: 0 30px;
+ }
+ .experiences svg{
+   width: 360px;
+   height: auto;
  }
  @media (max-width: 900px){
    .experiences{

@@ -1,5 +1,7 @@
 <template>
   <div class="me">
+    <Pie />
+    <Pie :items="[400,100,30,70]" />
 		<div class="me-sprite">
 			<div class="enter frame-144"></div>
 		</div><br>
@@ -13,6 +15,14 @@
 		Out of my work the most interesting thing to me are people. I love to discover new cultures and meet amazing individuals, and talk with them about something, even about the weather :)
   </div>
 </template>
+<script>
+ import Pie from './../components/svg/donut.vue'
+ export default {
+   components: {
+     Pie
+   }
+ }
+</script>
 <style>
  .me{
    padding: 20px 40px;
