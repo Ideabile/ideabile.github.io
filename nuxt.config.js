@@ -6,14 +6,6 @@ const mainUrl = process.env.BASE_URL || 'http://localhost:3050/';
 const experiences = require('./utils/content/experiences')
 const articles = require('./utils/content/articles')
 const isGenerating = JSON.parse(process.env.npm_config_argv).original.indexOf('generate') > -1
-const server = require('./utils/watchServer.js')
-
-server.start()
-
-// Start the watcher for server
-if (!isGenerating) {
-  server.watch()
-}
 
 // Generate Articles and Experiencs links based on file name
 let routesExperiences = experiences.contentList.map((obj) => {

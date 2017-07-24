@@ -14,23 +14,40 @@ server.route(require('./routes/experiences'))
 server.route(require('./routes/articles'))
 server.route(require('./routes/summary'))
 
-if(process.argv.indexOf('generate') > -1){
-  server.ext('onPreResponse', function (request, reply) {
-    let source = request.response.source;
-    let path = request.path
-    let filePath = `${__dirname}/../dist/api/${path}.json`
 
-    fse.ensureFile(filePath, () => {
-      fse.writeJsonSync(filePath, source)
+
+module.exports = {
+
+  start () {
+    server.start((err) => {
+      if (err) {
+        throw err;
+      }
+      console.log('Server running at:', server.info.uri)
     })
+  },
 
-    return reply.continue();
-  });
-}
+  cache () {
+    server.ext('onPreResponse', function (request, reply) {
+      let source = request.response.source;
+      let path = request.path
+      let filePath = `${__dirname}/../dist/api/${path}.json`
 
-server.start((err) => {
-  if (err) {
-    throw err;
+      fse.ensureFile(filePath, () => {
+        fse.writeJsonSync(filePath, source)
+      })
+
+      return reply.continue();
+    })
+  },
+
+  stop () {
+    server.stop((err) => {
+      if (err) {
+        throw err
+      }
+      console.log('Server stop')
+    })
   }
-  console.log('Server running at:', server.info.uri);
-})
+
+}

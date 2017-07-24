@@ -1,7 +1,5 @@
 <template>
   <div class="me">
-    <Pie />
-    <Pie :items="[400,100,30,70]" />
 		<div class="me-sprite">
 			<div class="enter frame-144"></div>
 		</div><br>
@@ -16,11 +14,7 @@
   </div>
 </template>
 <script>
- import Pie from './../components/svg/donut.vue'
  export default {
-   components: {
-     Pie
-   }
  }
 </script>
 <style>
