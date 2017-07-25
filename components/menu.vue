@@ -3,7 +3,7 @@
     <nuxt-link to="/blog">Thoughts</nuxt-link>
     <nuxt-link to="/experience">Experiences</nuxt-link>
     <nuxt-link to="/me">Me</nuxt-link>
-    <nuxt-link to="/cv">CV</nuxt-link>
+    <a href="/cv">CV</a>
   </div>
 </template>
 <style>

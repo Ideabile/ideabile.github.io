@@ -54,7 +54,7 @@
     </div>
 
     <div class="summary">
-      <h3>Languages</h3>
+      <h3>Programming Languages</h3>
       <ul class="cloud-tag">
         <li v-for="language in summary.programming">{{ language }}</li>
       </ul>
@@ -69,8 +69,8 @@
     </div>
 
     <div class="experiences">
-      <div v-for="item in experiences">
-        <experience :experience="item" />
+      <div v-for="item in experiences" v-bind:class="{ 'no-print': !item.firstRender}">
+        <experience :experience="item"/>
         <hr/>
       </div>
     </div>
@@ -79,7 +79,7 @@
       <button v-on:click="showAllExperiences">
         <span class="web-only">Load More</span>
         <span class="print-only">
-          Find other {{ totalExperiences - 2 }} projects that I've worked on @ ideabile.com/cv
+          Find other {{ totalExps }} projects that I worked on @ ideabile.com/cv
         </span>
       </button>
     </div>
@@ -87,9 +87,15 @@
 </template>
 
 <style>
+ @import url('https://fonts.googleapis.com/css?family=Asap');
+
+ body{
+   font-family: 'Asap', sans-serif;
+   font-size: 10px;
+ }
+
  h1, h2, h3{
    font-variant: small-caps;
-   letter-spacing: 0.2em;
    line-height: 1em;
  }
 
@@ -97,6 +103,7 @@
    clear: both;
    overflow: hidden;
    border-bottom: 2px solid #ccc;
+   padding: 20px 0;
  }
 
  .edu > div {
@@ -153,17 +160,59 @@
    margin: 10px 5px;
  }
 
+ .summary {
+   padding: 20px 0;
+ }
+
  .summary h3{
    margin-bottom: 0;
    text-align: center;
  }
 
  .experiences{
-   line-height: 0.9em;
    padding: 0 30px;
  }
  .experiences h1{
+   display: block;
+   max-width: 80%;
    font-size: 40px;
+ }
+
+ .experience .details {
+   font-size: 10px;
+   position: absolute;
+   right: 0;
+   top: -10px;
+ }
+
+ .experience h3 {
+   margin-bottom: 0;
+ }
+
+ .experience ul p{
+   margin-top: 0;
+ }
+
+ .experience .details li{
+   padding: 5px !important;
+ }
+
+ .experience .details .label {
+   padding-right: 10px !important;
+   margin: -5px -5px 5px -5px !important;
+ }
+
+ .experience ul ul li {
+   margin: 0;
+ }
+
+ svg .donut__label{
+   font-size: 16px !important;
+ }
+
+ svg .line__label{
+   font-size: 8px !important;
+   line-height: 20px !important;
  }
 
  .more {
@@ -190,6 +239,9 @@
 
  }
  @media print {
+   .no-print{
+     display: none;
+   }
    .more button {
      font-size: 10px;
    }
@@ -231,10 +283,10 @@
      padding: 4px;
    }
    .summary{
-     margin-bottom: 300px;
+     margin-bottom: 70px;
    }
    .experiences{
-     paddexperiences.lengthing: 0;
+     padding: 0;
      font-size: 12px;
    }
    .experiences h1 {
@@ -258,8 +310,6 @@
    return axios.get(GetApiUrl(env, isClient, path))
  }
 
- let allExps
-
  export default {
 
    layout: 'cv',
@@ -273,14 +323,16 @@
      get = get.bind(this, ...args)
 
      let experiences = await get('experiences/all')
-     let totalExperiences = experiences.data.experiences.length
+     let exps = experiences.data.experiences
 
-     allExps = experiences.data.experiences
-     experiences = allExps.reverse()
-                          .filter(
-                            exp => exp.attributes.company != 'me'
-                          )
-                          .slice(0, 3)
+     let totalExps = exps.length - 3
+     let allExps = exps.reverse()
+                   .filter( exp => exp.attributes.company != 'me' )
+
+     experiences = allExps.splice(0, 3).map(exp => {
+       exp.firstRender = true
+       return exp
+     })
 
      let skills = await get('summary/skills')
      skills = skills.data
@@ -294,8 +346,8 @@
      return {
        all: false,
        allExps,
-       totalExperiences,
        experiences,
+       totalExps,
        summary: {
          skills,
          programming,
@@ -305,13 +357,26 @@
 
    },
 
+   mounted () {
+     window.addEventListener('scroll', () => {
+       let pos = document.body.scrollTop + window.innerHeight
+       if (pos > document.body.scrollHeight - 500) {
+         this.showAllExperiences()
+       }
+     })
+   },
+
    methods: {
      async request (env, isClient, path) {
        return await axios.get(env, isClient, path).data
      },
-     async showAllExperiences () {
-       this.experiences = this.allExps
-       this.all = true
+     showAllExperiences () {
+       let toAppend = this.allExps.splice(0, 3).map(exp => {
+         exp.firstRender = false
+         return exp
+       })
+       this.experiences = this.experiences.concat(toAppend)
+       this.all = this.allExps.length === 0
      }
    }
  }

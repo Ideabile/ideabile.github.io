@@ -1,18 +1,40 @@
 <template>
-  <div>
+  <div class="experience">
     <h1 v-html="experience.attributes.title"></h1>
-    <ul>
-      <li v-if="company">Company: {{company}}</li>
-      <li v-if="date">From: {{date}}</li>
+    <ul class="details">
+      <li v-if="company"><span class="label">Company:</span> {{company}}</li>
+      <li v-if="date"><span class="label">When:</span> {{date}}</li>
     </ul>
     <div class="graph">
       <donut v-for="data,category in donutsData" :innerLabel="category" :items="data" class="donut"/>
     </div>
-    <div v-html="experience.body"></div>
+    <div class="experience__body" v-html="experience.body"></div>
   </div>
 </template>
 
 <style scoped>
+ .experience {
+   position: relative;
+ }
+ .experience__body ul li{
+   margin: -10px;
+ }
+ .details {
+   margin: 10px 0 0 -40px;
+ }
+ .details li{
+   margin: 0 10px 0 0;
+   padding: 10px;
+   display: inline-block;
+   border: 2px solid #000;
+ }
+ .details .label{
+   padding: 2px;
+   margin: -10px -10px 10px -10px;
+   display: block;
+   background: #000;
+   color: #fff;
+ }
  .graph{
    clear: both;
    overflow: hidden;
@@ -42,8 +64,16 @@
        return company != 'me' ? company : null
      },
      date () {
-       const date = !this.experience.attributes.date ?
+       let date = !this.experience.attributes.date ?
                     this.experience.attributes.year : this.experience.attributes.date
+
+       if ( date.indexOf(' - ') > -1 ){
+         let D = date.split(' - ').map(d => {
+           return d.split('-').slice(0, 2).join('-')
+         })
+         date = `${D[0]} - ${D[1]}`
+       }
+
        return date
      },
      donutsData () {

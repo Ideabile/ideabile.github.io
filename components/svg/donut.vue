@@ -1,6 +1,6 @@
 <template>
   <div>
-    <svg :width="widthSvg" :height="heightSvg" :viewbox="viewBox" preserveAspectRatio="xMidYmid meet">
+    <svg :width="widthSvg" :height="heightSvg" :viewbox="viewBox" preserveAspectRatio="xMidYMid meet">
       <g :transform="mainTransform">
         <g v-for="path in paths.shapes">
           <path :d="path" :fill="getRandomColor()" />
@@ -26,7 +26,7 @@
    vertical-align: middle;
  }
  .line__label {
-   display: table-cell;
+   line-height: 1em;
    vertical-align: bottom;
    padding: 0;
    margin: 0;
