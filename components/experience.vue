@@ -67,7 +67,7 @@
        let date = !this.experience.attributes.date ?
                     this.experience.attributes.year : this.experience.attributes.date
 
-       if ( date.indexOf(' - ') > -1 ){
+       if ( date.indexOf && date.indexOf(' - ') > -1 ){
          let D = date.split(' - ').map(d => {
            return d.split('-').slice(0, 2).join('-')
          })
