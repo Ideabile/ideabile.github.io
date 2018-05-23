@@ -3,7 +3,7 @@
     <header>
       <_menu/>
     </header>
-    <content>
+    <content role="content" tabindex="1">
       <div>
         <nuxt/>
       </div>

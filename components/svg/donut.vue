@@ -6,7 +6,7 @@
           <path :d="path" :fill="getRandomColor()" />
         </g>
         <g v-for="path in paths.labels">
-          <foreignObject :x="getCentroidLabel(path.centroid.x)" :y="path.centroid.y" :width="labelWidth">
+          <foreignObject :x="getCentroidLabel(path.centroid.x)" :y="path.centroid.y" :width="labelWidth" height="30">
             <p class="line__label" :style="lineLabel(path.centroid)">{{ path.label }}</p>
           </foreignObject>
           <path :d="path.line" fill="transparent" stroke="black" />
@@ -68,8 +68,8 @@
    props: {
      outerRadius: { default: 80 },
      innerRadius: { default: 60 },
-     marginWidth: { default: 120 },
-     marginHeight: { default: 20 },
+     marginWidth: { default: 140 },
+     marginHeight: { default: 30 },
      labelWidth: { default: 100 },
      labelFontSize: { default: 14},
      innerLabel: { default: 'Programming' },
