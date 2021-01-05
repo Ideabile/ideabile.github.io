@@ -19,7 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.21.1",
     "chokidar": "^1.7.0",
     "forever-monitor": "^1.7.1",
     "front-matter": "^2.1.2",
