@@ -33,7 +33,7 @@
     "pm2": "^2.5.0",
     "showdown": "^1.6.4",
     "showdown-youtube": "^1.2.1",
-    "underscore": "^1.8.3",
+    "underscore": "^1.12.1",
     "yamljs": "^0.2.8"
   },
   "devDependencies": {
