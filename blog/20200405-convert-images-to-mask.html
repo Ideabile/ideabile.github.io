@@ -1,0 +1,118 @@
+<!doctype html><html lang="en"><head><title>ideabile</title><link href="/style.095ba2e1.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-org8fc9285" class="outline-2">
+<h2 id="org8fc9285">Convert images to mask</h2>
+<div class="outline-text-2" id="text-org8fc9285">
+<p>
+Lately I've being thinking to make this website more appealing and what I would like
+is use some images of patents or inventions to attach the word of Ideabile next to it, with a small vocabulary definition.
+</p> <p>
+Usually I would use photoshop for this kind of image manipulation and to be fair I still consider the best option.
+</p> <p>
+I do belive there is a wide range of option now days that WebGL is here and we've Webassembly at our service.
+</p> <p>
+So I want to create a simple way to do the same but with open tools so at my service I will use <code>imagemagic</code> and some <code>canvas</code>.
+</p> <p>
+So let's start!
+</p> <p>
+The first problem to solve is how to get the dependency working.
+</p> <p>
+Let's install this with <code>npm</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">npm install -S wasm-imagemagick
+</pre>
+</div> <p>
+If you meant to use this package from <code>node</code> there would be less issues in running <code>wasm</code>, if you want then run this code
+from the browser you must consider some way to to public expose <code>magick.wasm</code>.
+</p> <p>
+In documentation they specified this as a step:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">cp ../../node_modules/wasm-imagemagick/dist/magick.js ../../dist/
+cp ../../node_modules/wasm-imagemagick/dist/magick.wasm ../../dist/
+</pre>
+</div> <p>
+I would rather use the <code>unpkg</code> version for this small demo, seems has less issues 🤷.
+</p> <p>
+Now we have some sort of super power so let's see what we can do.
+<br>
+I want to start with an image.
+</p> <div id="org338cd7e" class="figure">
+<p><img src="/machine.4585b59d.png" alt="machine.png">
+</p>
+</div> <blockquote>
+<p>
+Rare Book Division, The New York Public Library. "Arts et m&eacute;tiers. Plan, coupe et d&eacute;tails de la roue &agrave; pots ou machine &agrave; arroser." The New York Public Library Digital Collections. 1809 - 1828. <a href="http://digitalcollections.nypl.org/items/510d47e0-21b4-a3d9-e040-e00a18064a99">http://digitalcollections.nypl.org/items/510d47e0-21b4-a3d9-e040-e00a18064a99</a>
+</p>
+</blockquote> <p>
+So the firs thing to do is read the image trough javascript and convert to the <code>Uint8Array</code>.
+</p> <div class="org-src-container">
+<pre class="src src-typescript"><span class="org-keyword">import</span>(<span class="org-string">'https://unpkg.com/wasm-imagemagick/dist/bundles/magickApi.js'</span>).<span class="org-function-name">then</span>(Magick <span class="org-keyword">=&gt;</span> {
+    <span class="org-keyword">async</span> <span class="org-keyword">function</span> <span class="org-function-name">fetchImage</span>(<span class="org-variable-name">url</span>: <span class="org-typescript-primitive">string</span>) {
+        <span class="org-keyword">const</span> <span class="org-variable-name">image</span> = <span class="org-keyword">await</span> <span class="org-function-name">fetch</span>(url, {
+            headers: {
+                <span class="org-string">'Sec-Fetch-Dest'</span>: <span class="org-string">'image'</span>
+            }
+        });
+        <span class="org-keyword">return</span> <span class="org-keyword">new</span> <span class="org-type">Uint8Array</span>(<span class="org-keyword">await</span> image.<span class="org-function-name">arrayBuffer</span>())
+    }
+
+    <span class="org-keyword">async</span> <span class="org-keyword">function</span> <span class="org-function-name">getProcessedImage</span>(<span class="org-variable-name">url</span>: <span class="org-typescript-primitive">string</span>) {
+        <span class="org-keyword">const</span> <span class="org-variable-name">image</span> = document.<span class="org-function-name">createElement</span>(<span class="org-string">'img'</span>);
+
+        <span class="org-keyword">const</span> <span class="org-variable-name">processed</span> = <span class="org-keyword">await</span> Magick.<span class="org-function-name">Call</span>([
+            <span class="org-keyword">await</span> Magick.<span class="org-function-name">buildInputFile</span>(url, <span class="org-string">'in.png'</span>)
+        ], [
+            <span class="org-comment-delimiter">//</span><span class="org-comment">Let's initialise the image</span>
+            <span class="org-string">'convert'</span>, <span class="org-string">'in.png'</span>, <span class="org-string">'-bordercolor'</span>, <span class="org-string">'white'</span>, <span class="org-string">'-border'</span>, <span class="org-string">'1x1'</span>,
+            <span class="org-comment-delimiter">// </span><span class="org-comment">Set Alpha to most of the image</span>
+            <span class="org-string">'-alpha'</span>, <span class="org-string">'set'</span>, <span class="org-string">'-channel'</span>, <span class="org-string">'RGBA'</span>, <span class="org-string">'-fuzz'</span>, <span class="org-string">'20%'</span>,
+            <span class="org-comment-delimiter">// </span><span class="org-comment">Fill the image with white</span>
+            <span class="org-string">'-fill'</span>, <span class="org-string">'none'</span>, <span class="org-string">'-floodfill'</span>, <span class="org-string">'+0+0'</span>, <span class="org-string">'white'</span>,
+            <span class="org-comment-delimiter">// </span><span class="org-comment">Clean and set transparent</span>
+            <span class="org-string">'-shave'</span>, <span class="org-string">'1x1'</span>, <span class="org-string">'-transparent'</span>, <span class="org-string">'white'</span>,
+            <span class="org-comment-delimiter">// </span><span class="org-comment">Increase the saturation</span>
+            <span class="org-string">'-level'</span>, <span class="org-string">'30%'</span>,
+
+            <span class="org-comment-delimiter">// </span><span class="org-comment">Convert to grey</span>
+            <span class="org-string">'-modulate'</span>, <span class="org-string">'100,0'</span>,
+            <span class="org-string">'-channel'</span>, <span class="org-string">'RGBA'</span>, <span class="org-string">'-transparent'</span>, <span class="org-string">'white'</span>,
+
+            <span class="org-string">'-evaluate'</span>, <span class="org-string">'Divide'</span>, <span class="org-string">'1.5'</span>,
+            <span class="org-comment-delimiter">// </span><span class="org-comment">Export</span>
+            <span class="org-string">'out.png'</span>,
+        ]);
+
+        <span class="org-keyword">const</span> <span class="org-variable-name">processed_grey</span> = <span class="org-keyword">await</span> Magick.<span class="org-function-name">Call</span>([
+            { name: <span class="org-string">'in.png'</span>, content: processed[0][<span class="org-string">'buffer'</span>] }
+        ], [
+            <span class="org-string">'convert'</span>, <span class="org-string">'in.png'</span>,
+            <span class="org-comment-delimiter">// </span><span class="org-comment">Convert to grey</span>
+            <span class="org-string">'-modulate'</span>, <span class="org-string">'100,0'</span>,
+            <span class="org-string">'-channel'</span>, <span class="org-string">'RGB'</span>,
+            <span class="org-string">'-threshold'</span>, <span class="org-string">'80%'</span>,
+            <span class="org-string">'-channel'</span>, <span class="org-string">'RGBA'</span>, <span class="org-string">'-transparent'</span>, <span class="org-string">'white'</span>,
+            <span class="org-string">'out.png'</span>
+        ]);
+
+        <span class="org-keyword">const</span> <span class="org-variable-name">firstImage</span> = processed[0];
+        image.src = URL.<span class="org-function-name">createObjectURL</span>(firstImage[<span class="org-string">'blob'</span>]);
+
+        <span class="org-keyword">return</span> image;
+    }
+
+
+    <span class="org-keyword">async</span> <span class="org-keyword">function</span> <span class="org-function-name">init</span>() {
+        <span class="org-keyword">const</span> <span class="org-variable-name">img</span> = document.<span class="org-function-name">querySelector</span>(<span class="org-string">'img[alt="machine.png"]'</span>).src
+        <span class="org-keyword">const</span> <span class="org-variable-name">image</span> = <span class="org-keyword">await</span> <span class="org-function-name">getProcessedImage</span>(img);
+        document.<span class="org-function-name">getElementById</span>(<span class="org-string">'demo'</span>).<span class="org-function-name">appendChild</span>(image);
+
+    }
+
+    <span class="org-function-name">init</span>();
+});
+
+</pre>
+</div> <div id="demo"></div>
+<script src="/convert-images-to-mask.830790ee.js"></script>
+</div>
+</div> </div> </div> <footer> Copyright © 2000/2021 Mauro Mandracchia<br> Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.<br> Verbatim copying and redistribution of any of the photos is permitted under the <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Noderivs Nocommercial license version 3.0</a> or later. </footer> </div> </body></html>

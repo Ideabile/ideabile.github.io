@@ -1,0 +1,161 @@
+<!doctype html><html lang="en"><head><title>ideabile</title><link href="/style.095ba2e1.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-orga66927f" class="outline-2">
+<h2 id="orga66927f">Spotify Playlist folder</h2>
+<div class="outline-text-2" id="text-orga66927f">
+<p>
+I feel proud of my musical taste, I invest my self some hours to look for music that I like,
+I must say that with Spotify I enjoy discovering music even more.
+Every Discovery Week matches the mood of my previous week, not always what I wish for but most
+of the time I'm very satisfy of.
+</p> <p>
+My girlfriend is often suggesting friends to subscribe to my discovery weekly, because she found it nice.
+So I thought why not just share with the rest of the worlds that ends here?
+</p> <p>
+Every now and then, mainly when I remember, I backup my Discovery Weekly in a SongDiary.
+So I thought, everytime I have a new playlist I will like to add it here in my blog.
+</p> <p>
+But with as the excitement grow while studing the Spotify API, I unfortunately
+end my search at this <a href="https://github.com/spotify/web-api/issues/38#issuecomment-396925978">issue</a>, which means that Spotify would not make available a way to fetch folders.
+</p> <p>
+Well that was bad luck, but hey is not my problem only and seems someone has already build a <a href="https://github.com/mikez/spotify-folders">solution</a>.
+Althought this practically delivers the same valure, the script has to run where there is a Authenticate Spotify
+installed.
+</p> <p>
+And since I was planning to run this in a cron, I might rethink how I want this to work in the first place.
+</p> <p>
+So I decide to give a try to this script let's see how it goes.
+</p>
+</div> <div id="outline-container-org52e7590" class="outline-3">
+<h3 id="org52e7590">The idea</h3>
+<div class="outline-text-3" id="text-org52e7590">
+<p>
+I want to estrapolate the playlist id and I want to create a simple org file with just the url of the playlist
+and maybe also the image. Which I'm already thinking I can apply a nice effect to it.
+</p> <p>
+Mhh.. this is getting juicy. When I create a new playlist maybe I should also publish to my Social channels.
+But that is for later.
+</p>
+</div>
+</div> <div id="outline-container-org73ad436" class="outline-3">
+<h3 id="org73ad436">The plan</h3>
+<div class="outline-text-3" id="text-org73ad436">
+<p>
+Let's start by downloading the script as recommended by the project.
+</p> <div class="org-src-container">
+<pre class="src src-shell">curl -L https://git.io/folders &gt; /usr/local/bin/spotifyfolders
+chmod +x /usr/local/bin/spotifyfolders
+</pre>
+</div> <p>
+Then let's try to use this thing
+</p> <div class="org-src-container">
+<pre class="src src-shell" id="org705fcd2">spotifyfolders https://open.spotify.com/user/1134797920/folder/bdb20f3c4fb707ff
+</pre>
+</div> <p>
+Well seems that we got already far enough. I'm pleasedly surprise.
+Ok now let's grab each playlist and create a document for each of them.
+</p> <p>
+So let's loop trough those elements and fetch the list of each detail
+</p> <pre class="example" id="org8b65ef3">
+Bearer BQD3WhrL4tVWnXNYLFIipK4pllyNTg4LmhVla0aG0mAnUxA6va3XouW03cNTeHHxbIlKcMkzAN18tatU1s4cUNmzlBvidW0BjG6EG5kVsXDFR2QIDyhqLzSyLmfbGll5yMDPeBHcw6-Q0VK-U1Bs7wxcmTkgijM
+</pre> <div class="org-src-container">
+<pre class="src src-js" id="orgf4446b1"><span class="org-keyword">const</span> <span class="org-variable-name">http</span> = require(<span class="org-string">"https"</span>);
+
+<span class="org-keyword">const</span> <span class="org-variable-name">fetch</span> = (options) =&gt;
+  <span class="org-keyword">new</span> <span class="org-type">Promise</span>((resolve) =&gt; {
+    <span class="org-keyword">const</span> <span class="org-variable-name">req</span> = http.request(options, (response) =&gt; {
+      <span class="org-keyword">const</span> <span class="org-variable-name">res</span> = [];
+      response.on(<span class="org-string">"data"</span>, (chunck) =&gt; res.push(chunck));
+      response.on(<span class="org-string">"end"</span>, () =&gt; resolve(res.join(<span class="org-string">""</span>)));
+    });
+    req.end();
+  });
+
+<span class="org-keyword">const</span> <span class="org-variable-name">list_playlist</span> = list != <span class="org-string">""</span> ? JSON.parse(list) : [];
+
+Promise.all(
+  list_playlist.children
+    .filter((i) =&gt; !!i.uri)
+    .map((i) =&gt;
+      fetch({
+        host: <span class="org-string">"api.spotify.com"</span>,
+        path: <span class="org-string">`/v1/playlists/${i.uri.replace("spotify:playlist:", "")}`</span>,
+        headers: {
+          Accept: <span class="org-string">"application/json"</span>,
+          <span class="org-string">"Content-Type"</span>: <span class="org-string">"application/json"</span>,
+          Authorization: token.trim(),
+        },
+      })
+    )
+)
+  .then((res) =&gt; {
+    <span class="org-keyword">return</span> res
+      .map((playlist) =&gt; JSON.parse(playlist))
+      .filter((playlist) =&gt; !!playlist.tracks.items.length)
+      .map(({ images, name, description, id, tracks }) =&gt; ({
+        images,
+        name,
+        description,
+        id,
+        tracks: tracks.items.map(({ track: { name, album, artists } }) =&gt; ({
+          name,
+          album: album.name,
+          images: album.images,
+          artists: artists.map(({ name }) =&gt; name).join(<span class="org-string">", "</span>),
+        })),
+      }));
+  })
+  .<span class="org-keyword">catch</span>(console.log)
+  .then((res) =&gt; console.log(JSON.stringify(res, <span class="org-constant">null</span>, 4)));
+</pre>
+</div> <p>
+So now that we have extracted all the information that we need let's template this in a convinient way:
+</p> <div class="org-src-container">
+<pre class="src src-js" id="orgf3a8ddb"><span class="org-keyword">const</span> <span class="org-variable-name">fs</span> = require(<span class="org-string">"fs"</span>);
+data = JSON.parse(data);
+data.forEach(({ name, id, tracks, images }) =&gt; {
+  <span class="org-keyword">const</span> <span class="org-variable-name">getPlayer</span> = () =&gt; <span class="org-string">`</span>
+<span class="org-string">&lt;div class="playlist-player"&gt;</span>
+<span class="org-string">    &lt;img src="${!!images.length ? images[0].url : ""}" /&gt;</span>
+<span class="org-string">    &lt;iframe src="https://open.spotify.com/embed/playlist/${id}" frameBorder="0" allowtransparency="true" allow="encrypted-media"&gt;&lt;/iframe&gt;</span>
+<span class="org-string">&lt;/div&gt;`</span>;
+
+  <span class="org-keyword">const</span> <span class="org-variable-name">itemList</span> = ({ name, album, artists, images }) =&gt; <span class="org-string">`</span>
+<span class="org-string">&lt;li&gt;</span>
+<span class="org-string">    &lt;img class="album-preview" src="${</span>
+<span class="org-string">      images.filter(({ height }) =&gt; height &lt; 100)[0].url</span>
+<span class="org-string">    }" /&gt;</span>
+<span class="org-string">    &lt;div&gt;</span>
+<span class="org-string">        &lt;span class="track"&gt;${name}&lt;/span&gt;</span>
+<span class="org-string">        &lt;span class="artist"&gt;${artists}&lt;/span&gt;</span>
+<span class="org-string">        &lt;span class="album"&gt;${album}&lt;/span&gt;</span>
+<span class="org-string">    &lt;/div&gt;</span>
+<span class="org-string">&lt;/li&gt;`</span>;
+
+  <span class="org-keyword">const</span> <span class="org-variable-name">getList</span> = () =&gt; <span class="org-string">`</span>
+<span class="org-string">&lt;ul&gt;</span>
+<span class="org-string">    ${tracks.map(itemList).join("")}</span>
+<span class="org-string">&lt;/ul&gt;`</span>;
+
+  fs.writeFileSync(
+    <span class="org-string">`../playlist/${name.replace(/\s/g, "").toLowerCase()}-${id}.org`</span>,
+    <span class="org-string">`</span>
+<span class="org-string">#+TITLE: ${name}</span>
+<span class="org-string">* ${name}</span>
+
+<span class="org-string">#+begin_export html</span>
+<span class="org-string">&lt;div class="playlist"&gt;</span>
+<span class="org-string">    ${getPlayer()}</span>
+<span class="org-string">    ${getList()}</span>
+<span class="org-string">&lt;/div&gt;</span>
+<span class="org-string">#+end_export</span>
+<span class="org-string">`</span>
+  );
+});
+</pre>
+</div> <p>
+🎉 After the execution of the above script I basically have my folder with a post for each playlist!
+</p> <p>
+So its time to enjoy the <a href="/thoughts.html#orga9efa94">result</a> 🎧!
+</p>
+</div>
+</div>
+</div> </div> </div> <footer> Copyright © 2000/2021 Mauro Mandracchia<br> Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.<br> Verbatim copying and redistribution of any of the photos is permitted under the <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Noderivs Nocommercial license version 3.0</a> or later. </footer> </div> </body></html>
