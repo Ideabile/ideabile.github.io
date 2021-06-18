@@ -1,6 +1,6 @@
-<!doctype html><html lang="en"><head><title>ideabile</title><link href="/style.095ba2e1.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-org0cd1df7" class="outline-2">
-<h2 id="org0cd1df7">Spotify Playlist folder</h2>
-<div class="outline-text-2" id="text-org0cd1df7">
+<!doctype html><html lang="en"><head><title>ideabile</title><link href="/style.095ba2e1.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-org081c457" class="outline-2">
+<h2 id="org081c457">Spotify Playlist folder</h2>
+<div class="outline-text-2" id="text-org081c457">
 <p>
 I feel proud of my musical taste, I invest my self some hours to look for music that I like,
 I must say that with Spotify I enjoy discovering music even more.
@@ -24,9 +24,9 @@ And since I was planning to run this in a cron, I might rethink how I want this 
 </p> <p>
 So I decide to give a try to this script let's see how it goes.
 </p>
-</div> <div id="outline-container-orgcea20da" class="outline-3">
-<h3 id="orgcea20da">The idea</h3>
-<div class="outline-text-3" id="text-orgcea20da">
+</div> <div id="outline-container-orgf59b33f" class="outline-3">
+<h3 id="orgf59b33f">The idea</h3>
+<div class="outline-text-3" id="text-orgf59b33f">
 <p>
 I want to estrapolate the playlist id and I want to create a simple org file with just the url of the playlist
 and maybe also the image. Which I'm already thinking I can apply a nice effect to it.
@@ -35,9 +35,9 @@ Mhh.. this is getting juicy. When I create a new playlist maybe I should also pu
 But that is for later.
 </p>
 </div>
-</div> <div id="outline-container-org10ebe5b" class="outline-3">
-<h3 id="org10ebe5b">The plan</h3>
-<div class="outline-text-3" id="text-org10ebe5b">
+</div> <div id="outline-container-org52cdf0a" class="outline-3">
+<h3 id="org52cdf0a">The plan</h3>
+<div class="outline-text-3" id="text-org52cdf0a">
 <p>
 Let's start by downloading the script as recommended by the project.
 </p> <div class="org-src-container">
@@ -47,17 +47,17 @@ chmod +x /usr/local/bin/spotifyfolders
 </div> <p>
 Then let's try to use this thing
 </p> <div class="org-src-container">
-<pre class="src src-shell" id="orgfcd0529">spotifyfolders https://open.spotify.com/user/1134797920/folder/bdb20f3c4fb707ff
+<pre class="src src-shell" id="org225e6cc">spotifyfolders https://open.spotify.com/user/1134797920/folder/bdb20f3c4fb707ff
 </pre>
 </div> <p>
 Well seems that we got already far enough. I'm pleasedly surprise.
 Ok now let's grab each playlist and create a document for each of them.
 </p> <p>
 So let's loop trough those elements and fetch the list of each detail
-</p> <pre class="example" id="orgae73c50">
+</p> <pre class="example" id="org017e655">
 Bearer BQD3WhrL4tVWnXNYLFIipK4pllyNTg4LmhVla0aG0mAnUxA6va3XouW03cNTeHHxbIlKcMkzAN18tatU1s4cUNmzlBvidW0BjG6EG5kVsXDFR2QIDyhqLzSyLmfbGll5yMDPeBHcw6-Q0VK-U1Bs7wxcmTkgijM
 </pre> <div class="org-src-container">
-<pre class="src src-js" id="org44ca82d"><span class="org-keyword">const</span> <span class="org-variable-name">http</span> = require(<span class="org-string">"https"</span>);
+<pre class="src src-js" id="org1ae32e6"><span class="org-keyword">const</span> <span class="org-variable-name">http</span> = require(<span class="org-string">"https"</span>);
 
 <span class="org-keyword">const</span> <span class="org-variable-name">fetch</span> = (options) =&gt;
   <span class="org-keyword">new</span> <span class="org-type">Promise</span>((resolve) =&gt; {
@@ -109,7 +109,7 @@ Promise.all(
 </div> <p>
 So now that we have extracted all the information that we need let's template this in a convinient way:
 </p> <div class="org-src-container">
-<pre class="src src-js" id="org43f1964"><span class="org-keyword">const</span> <span class="org-variable-name">fs</span> = require(<span class="org-string">"fs"</span>);
+<pre class="src src-js" id="org637e73e"><span class="org-keyword">const</span> <span class="org-variable-name">fs</span> = require(<span class="org-string">"fs"</span>);
 data = JSON.parse(data);
 data.forEach(({ name, id, tracks, images }) =&gt; {
   <span class="org-keyword">const</span> <span class="org-variable-name">getPlayer</span> = () =&gt; <span class="org-string">`</span>
@@ -154,7 +154,7 @@ data.forEach(({ name, id, tracks, images }) =&gt; {
 </div> <p>
 🎉 After the execution of the above script I basically have my folder with a post for each playlist!
 </p> <p>
-So its time to enjoy the <a href="/thoughts.html#org04440f1">result</a> 🎧!
+So its time to enjoy the <a href="/thoughts.html#org7085930">result</a> 🎧!
 </p>
 </div>
 </div>
