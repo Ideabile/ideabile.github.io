@@ -1,6 +1,6 @@
-<!doctype html><html lang="en"><head><title>ideabile</title><link href="/style.095ba2e1.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-org4d8354f" class="outline-2">
-<h2 id="org4d8354f">How to convert Markdown into Org-Mode</h2>
-<div class="outline-text-2" id="text-org4d8354f">
+<!doctype html><html lang="en"><head><title>ideabile</title><link href="/style.095ba2e1.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-org5924372" class="outline-2">
+<h2 id="org5924372">How to convert Markdown into Org-Mode</h2>
+<div class="outline-text-2" id="text-org5924372">
 <p>
 I have migrate this blog multiple times and is hard to describe how many problem
 I solve hover and hover.
@@ -22,7 +22,7 @@ But enough background, let's move into the meety greedy stuff, I'm here with a b
 </p> <p>
 So first of all I create use <code>pandoc</code> to do the conversion for me
 </p> <div class="org-src-container">
-<pre class="src src-shell" id="orgb75b724">pandoc -i ${<span class="org-variable-name">file_from</span>} -f markdown -t org -o ${<span class="org-variable-name">file_to</span>}
+<pre class="src src-shell" id="org5cc4b8d">pandoc -i ${<span class="org-variable-name">file_from</span>} -f markdown -t org -o ${<span class="org-variable-name">file_to</span>}
 </pre>
 </div> <p>
 That would allow us to conver the file from <code>markdown</code> to <code>org-mode</code>, but since
@@ -47,7 +47,7 @@ So I will just continue with <code>frontmatteer</code>.
 </div> <p>
 To give you an idea of the dat structure that I want to use the bellow is an example:
 </p>
-<pre class="example" id="orgaa4ef25">
+<pre class="example" id="org173cc6e">
 {
   title: 'Artista e designer',
   link: 'http://blog.ideabile.com/2012/04/artista-e-designer/',
@@ -102,7 +102,7 @@ Then we can call it like this
 </div> <p>
 But let's assume we want to conver a full directory.
 </p> <div class="org-src-container">
-<pre class="src src-shell" id="orgf0ed824"><span class="org-builtin">cd</span> content/articles;
+<pre class="src src-shell" id="org99b6485"><span class="org-builtin">cd</span> content/articles;
 <span class="org-keyword">for</span> f<span class="org-keyword"> in</span> *.md; <span class="org-keyword">do</span>
     cat f | ../../tangled/convert-md-to-org.js &gt; ../articles-org/<span class="org-string">"${f%.md}.org"</span>;
 <span class="org-keyword">done</span>
