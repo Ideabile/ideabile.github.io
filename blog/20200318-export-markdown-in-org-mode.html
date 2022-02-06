@@ -1,6 +1,6 @@
-<!doctype html><html lang="en"><head><title>ideabile</title><link href="/style.095ba2e1.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> <li><a href="/playlist.html">Playlist</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-org5a0acb4" class="outline-2">
-<h2 id="org5a0acb4">How to convert Markdown into Org-Mode</h2>
-<div class="outline-text-2" id="text-org5a0acb4">
+<!doctype html><html lang="en"><head><title>ideabile</title><link href="/style.095ba2e1.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> <li><a href="/playlist.html">Playlist</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-org3678c03" class="outline-2">
+<h2 id="org3678c03">How to convert Markdown into Org-Mode</h2>
+<div class="outline-text-2" id="text-org3678c03">
 <p>
 I have migrated this blog multiple times and is hard to describe how many problems
 I solve hover and hover.
@@ -22,7 +22,7 @@ But enough background, let's move into the meet greedy stuff, I'm here with a bu
 </p> <p>
 So first of all I create use <code>pandoc</code> to do the conversion for me
 </p> <div class="org-src-container">
-<pre class="src src-shell" id="orgbfdc9fb">pandoc -i ${<span class="org-variable-name">file_from</span>} -f markdown -t org -o ${<span class="org-variable-name">file_to</span>}
+<pre class="src src-shell" id="org7d02f13">pandoc -i ${<span class="org-variable-name">file_from</span>} -f markdown -t org -o ${<span class="org-variable-name">file_to</span>}
 </pre>
 </div> <p>
 That would allow us to convert the file from <code>markdown</code> to <code>org-mode</code>, but since
@@ -47,7 +47,7 @@ So I will just continue with <code>frontmatteer</code>.
 </div> <p>
 To give you an idea of the data structure that I want to use the bellow is an example:
 </p>
-<pre class="example" id="orgf396fe3">
+<pre class="example" id="org14a02a2">
 {
   title: 'Artista e designer',
   link: 'http://blog.ideabile.com/2012/04/artista-e-designer/',
@@ -102,7 +102,7 @@ Then we can call it like this
 </div> <p>
 But let's assume we want to convert a full directory.
 </p> <div class="org-src-container">
-<pre class="src src-shell" id="org6af51e0">shopt -s nullglob;
+<pre class="src src-shell" id="org70553e8">shopt -s nullglob;
 <span class="org-builtin">cd</span> content/articles;
 <span class="org-keyword">for</span> f<span class="org-keyword"> in</span> *.md; <span class="org-keyword">do</span>
     cat f | ../../tangled/convert-md-to-org.js &gt; ../articles-org/<span class="org-string">"${f%.md}.org"</span>;
