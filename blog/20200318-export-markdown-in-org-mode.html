@@ -1,53 +1,6 @@
-<!doctype html><html lang="en"><head><title>ideabile</title><link href="/style.095ba2e1.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> <li><a href="/playlist.html">Playlist</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-org3678c03" class="outline-2">
-<h2 id="org3678c03">How to convert Markdown into Org-Mode</h2>
-<div class="outline-text-2" id="text-org3678c03">
-<p>
-I have migrated this blog multiple times and is hard to describe how many problems
-I solve hover and hover.
-</p> <p>
-Just to give you some background of these migrations I started from a WordPress
-that I run in a simple DigitalOcean Droplet.
-It became too sluggish and somehow didn't feel to leave my editor for writing an
-Article.
-So I move everything to files, because in the end who need a database just for few
-articles.
-</p> <p>
-But here I am with a bunch of Markdown and an Emacs, which I play setup with Nuxt.
-</p> <p>
-But wait for a second, Emacs as Org-mode which already use for a bunch of stuff, and yes why not just move
-the entire website and note-taking into Org-mode?
-I could build live demos, components, research papers all from one side and don't leave my editor.
-</p> <p>
-But enough background, let's move into the meet greedy stuff, I'm here with a bunch of markdowns; but I want them to be org-mode now.
-</p> <p>
-So first of all I create use <code>pandoc</code> to do the conversion for me
-</p> <div class="org-src-container">
-<pre class="src src-shell" id="org7d02f13">pandoc -i ${<span class="org-variable-name">file_from</span>} -f markdown -t org -o ${<span class="org-variable-name">file_to</span>}
-</pre>
-</div> <p>
-That would allow us to convert the file from <code>markdown</code> to <code>org-mode</code>, but since
-I've been doing a bit of magic with the help of <code>frontmatter</code> (eg: render my cv)
-</p> <p>
-I need to have a way that allows bringing that information back to the org-mode file.
-</p> <p>
-For that purpose, I would just use the <code>frontmatter</code> package in <code>npm</code>.
-</p> <p>
-In the beginning, I try to use the only cli but I stumble in a couple of issues
-</p>
-<ul class="org-ul">
-<li>I couldn't imagine that <code>sed</code> was so hard with multiline.</li>
-<li>I initially try to find a package that is <code>cli-ready</code>, I ended with <code>yaml-front-matter</code> which look ideal to run with <code>npx</code>.
-I finally realize that they provide the content on the root level, with the option to change it I soon realize that this was
-not suitable for me, I prefer the way that <code>frontmatter</code> does so <code>{ data: TheYaml, content: "The Markdown" }</code></li>
-</ul> <p>
-So I will just continue with <code>frontmatteer</code>.
-</p> <div class="org-src-container">
-<pre class="src src-shell">npm install -S frontmatter
-</pre>
-</div> <p>
-To give you an idea of the data structure that I want to use the bellow is an example:
-</p>
-<pre class="example" id="org14a02a2">
+<!doctype html><html lang="en"><head><title>ideabile</title><link href="/index.dbd1ebda.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> <li><a href="/playlist.html">Playlist</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-orgfe4ee55" class="outline-2"> <h2 id="orgfe4ee55">How to convert Markdown into Org-Mode</h2> <div class="outline-text-2" id="text-orgfe4ee55"> <p> I have migrated this blog multiple times and is hard to describe how many problems I solve hover and hover. </p> <p> Just to give you some background of these migrations I started from a WordPress that I run in a simple DigitalOcean Droplet. It became too sluggish and somehow didn't feel to leave my editor for writing an Article. So I move everything to files, because in the end who need a database just for few articles. </p> <p> But here I am with a bunch of Markdown and an Emacs, which I play setup with Nuxt. </p> <p> But wait for a second, Emacs as Org-mode which already use for a bunch of stuff, and yes why not just move the entire website and note-taking into Org-mode? I could build live demos, components, research papers all from one side and don't leave my editor. </p> <p> But enough background, let's move into the meet greedy stuff, I'm here with a bunch of markdowns; but I want them to be org-mode now. </p> <p> So first of all I create use <code>pandoc</code> to do the conversion for me </p> <div class="org-src-container"> <pre class="src src-shell" id="orgbcda76b">pandoc -i ${<span class="org-variable-name">file_from</span>} -f markdown -t org -o ${<span class="org-variable-name">file_to</span>}
+</pre> </div> <p> That would allow us to convert the file from <code>markdown</code> to <code>org-mode</code>, but since I've been doing a bit of magic with the help of <code>frontmatter</code> (eg: render my cv) </p> <p> I need to have a way that allows bringing that information back to the org-mode file. </p> <p> For that purpose, I would just use the <code>frontmatter</code> package in <code>npm</code>. </p> <p> In the beginning, I try to use the only cli but I stumble in a couple of issues </p> <ul class="org-ul"> <li>I couldn't imagine that <code>sed</code> was so hard with multiline.</li> <li>I initially try to find a package that is <code>cli-ready</code>, I ended with <code>yaml-front-matter</code> which look ideal to run with <code>npx</code>. I finally realize that they provide the content on the root level, with the option to change it I soon realize that this was not suitable for me, I prefer the way that <code>frontmatter</code> does so <code>{ data: TheYaml, content: "The Markdown" }</code></li> </ul> <p> So I will just continue with <code>frontmatteer</code>. </p> <div class="org-src-container"> <pre class="src src-shell">npm install -S frontmatter
+</pre> </div> <p> To give you an idea of the data structure that I want to use the bellow is an example: </p> <pre class="example" id="org45f7d86">
 {
   title: 'Artista e designer',
   link: 'http://blog.ideabile.com/2012/04/artista-e-designer/',
@@ -61,13 +14,7 @@ To give you an idea of the data structure that I want to use the bellow is an ex
   status: 'publish',
   post_type: 'post'
 }
-</pre> <p>
-What I want to do is a script that grabs the <code>stdin</code> of a <code>markdown</code> and returns an <code>org</code> file.
-</p> <p>
-During my migration, I only care about a couple of fields, more specifically the <code>create</code>, <code>title</code>.
-With those fields, I want to add them in my <code>org-mode</code> file so that I can query my content.
-</p> <div class="org-src-container">
-<pre class="src src-javascript"><span class="org-comment">#!/usr/bin/env node</span>
+</pre> <p> What I want to do is a script that grabs the <code>stdin</code> of a <code>markdown</code> and returns an <code>org</code> file. </p> <p> During my migration, I only care about a couple of fields, more specifically the <code>create</code>, <code>title</code>. With those fields, I want to add them in my <code>org-mode</code> file so that I can query my content. </p> <div class="org-src-container"> <pre class="src src-javascript"><span class="org-comment">#!/usr/bin/env node</span>
 <span class="org-keyword">const</span> <span class="org-variable-name">frontmatter</span> = require(<span class="org-string">'frontmatter'</span>);
 <span class="org-keyword">const</span> <span class="org-variable-name">fs</span> = require(<span class="org-string">'fs'</span>);
 <span class="org-keyword">const</span> { execSync } = require(<span class="org-string">'child_process'</span>);
@@ -88,27 +35,12 @@ With those fields, I want to add them in my <code>org-mode</code> file so that I
 <span class="org-string">${org}</span>
 <span class="org-string">`</span>);
 }
-</pre>
-</div> <p>
-Then we need to make the file executable
-</p> <div class="org-src-container">
-<pre class="src src-shell">chmod +x ../../tangled/convert-md-to-org.js
-</pre>
-</div> <p>
-Then we can call it like this
-</p> <div class="org-src-container">
-<pre class="src src-shell">cat ${<span class="org-variable-name">file_from</span>} | ../../tangled/convert-md-to-org.js
-</pre>
-</div> <p>
-But let's assume we want to convert a full directory.
-</p> <div class="org-src-container">
-<pre class="src src-shell" id="org70553e8">shopt -s nullglob;
+</pre> </div> <p> Then we need to make the file executable </p> <div class="org-src-container"> <pre class="src src-shell">chmod +x ../../tangled/convert-md-to-org.js
+</pre> </div> <p> Then we can call it like this </p> <div class="org-src-container"> <pre class="src src-shell">cat ${<span class="org-variable-name">file_from</span>} | ../../tangled/convert-md-to-org.js
+</pre> </div> <p> But let's assume we want to convert a full directory. </p> <div class="org-src-container"> <pre class="src src-shell" id="org1860fa3">shopt -s nullglob;
 <span class="org-builtin">cd</span> content/articles;
 <span class="org-keyword">for</span> f<span class="org-keyword"> in</span> *.md; <span class="org-keyword">do</span>
     cat f | ../../tangled/convert-md-to-org.js &gt; ../articles-org/<span class="org-string">"${f%.md}.org"</span>;
 <span class="org-keyword">done</span>
 shopt -u nullglob;
-</pre>
-</div>
-</div>
-</div> </div> </div> <footer> Copyright © 2000/2021 Mauro Mandracchia<br> Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.<br> Verbatim copying and redistribution of any of the photos is permitted under the <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Noderivs Nocommercial license version 3.0</a> or later. </footer> </div> </body></html>
+</pre> </div> </div> </div> </div> </div> <footer> Copyright © 2000/2022 Mauro Mandracchia<br> Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.<br> Verbatim copying and redistribution of any of the photos is permitted under the <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Noderivs Nocommercial license version 3.0</a> or later. </footer> </div> </body></html>

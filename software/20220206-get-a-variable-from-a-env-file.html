@@ -1,14 +1,2 @@
-<!doctype html><html lang="en"><head><title>ideabile</title><link href="/style.095ba2e1.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> <li><a href="/playlist.html">Playlist</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-org0305323" class="outline-2">
-<h2 id="org0305323">Get a variable from a .env file</h2>
-<div class="outline-text-2" id="text-org0305323">
-<p>
-I went browsing around to see if this is somehow possible with <code>emacs lisp</code>, but seems that this is more difficult that I've would've anticipated.
-</p> <p>
-So let's see if with a bit of shell we can get our luck.
-</p>
-<div class="org-src-container">
-<pre class="src src-shell" id="orgabf9b9f">grep <span class="org-string">"${key}="</span> &lt; ../../../.env| cut -d <span class="org-string">'='</span> -f2
-</pre>
-</div>
-</div>
-</div> </div> </div> <footer> Copyright © 2000/2021 Mauro Mandracchia<br> Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.<br> Verbatim copying and redistribution of any of the photos is permitted under the <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Noderivs Nocommercial license version 3.0</a> or later. </footer> </div> </body></html>
+<!doctype html><html lang="en"><head><title>ideabile</title><link href="/index.dbd1ebda.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> <li><a href="/playlist.html">Playlist</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-org618577b" class="outline-2"> <h2 id="org618577b">Get a variable from a .env file</h2> <div class="outline-text-2" id="text-org618577b"> <p> I went browsing around to see if this is somehow possible with <code>emacs lisp</code>, but seems that this is more difficult that I've would've anticipated. </p> <p> So let's see if with a bit of shell we can get our luck. </p> <div class="org-src-container"> <pre class="src src-shell" id="orgb141b96">awk -F<span class="org-string">'='</span> <span class="org-string">"/^${key}=/ { print \$2 }"</span> ../../../.env
+</pre> </div> </div> </div> </div> </div> <footer> Copyright © 2000/2022 Mauro Mandracchia<br> Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.<br> Verbatim copying and redistribution of any of the photos is permitted under the <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Noderivs Nocommercial license version 3.0</a> or later. </footer> </div> </body></html>

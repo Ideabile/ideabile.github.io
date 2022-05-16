@@ -1,20 +1,4 @@
-<!doctype html><html lang="en"><head><title>ideabile</title><link href="/style.095ba2e1.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> <li><a href="/playlist.html">Playlist</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-org07c5f1d" class="outline-2">
-<h2 id="org07c5f1d">Package <code>@ideable/style-org-theme</code></h2>
-<div class="outline-text-2" id="text-org07c5f1d">
-<p>This package contains the sintax higlighting of my editor theme <code>spacesmacs-dark</code> exported as <code>css</code>. Uses the <code>org-html-htmlize-generate-css</code> to generate all the classes that aligns to the <code>org-mode</code> exports.</p>
-<h2 id="how-to-use-it">How to use it</h2>
-<p>The style are distribute as <code>node_modules</code> so you would need <code>npm</code> to install them. These styles works with the <code>org-html-export-to-html</code> function but you might need some settings to make sure that would work on your setup please make sure that your <code>org-publish</code> would set the <code>htmlize</code> to <code>css</code>.</p>
-<pre><code>#+BIND: org-html-htmlize-output-type (&quot;css&quot;)</code></pre>
-<p>Additionally we don’t want to use the default <code>css</code> provided by org mode so another header to add would be:</p>
-<pre><code>#+OPTIONS: html-style:nil</code></pre>
-<p>This package is heavily inspired by <a href="https://github.com/gongzhitaao/orgcss">orgcss</a></p>
-</div> <div id="outline-container-sec:org-templates" class="outline-3">
-<h3 id="sec:org-templates">Org Templates</h3>
-<div class="outline-text-3" id="text-sec:org-templates">
-<p>
-The following is my org file template for blogging.
-</p> <div class="org-src-container">
-<pre class="src src-org"><span class="org-org-document-info-keyword">#+TITLE:</span> <span class="org-org-document-title">Article Title Goes Here</span>
+<!doctype html><html lang="en"><head><title>ideabile</title><link href="/index.dbd1ebda.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body> <div id="layout"> <div class="header"> <nav> <a href="/index.html"><h1>ideabile</h1></a> <ul> <li><a href="/thoughts.html">Thoughts</a></li> <li><a href="/software.html">Projects</a></li> <li><a href="/playlist.html">Playlist</a></li> </ul> </nav> </div> <div class="content"> <div id="content"> <div id="outline-container-org49201ea" class="outline-2"> <h2 id="org49201ea">Package <code>@ideable/style-org-theme</code></h2> <div class="outline-text-2" id="text-org49201ea"> <p>This package contains the sintax higlighting of my editor theme <code>spacesmacs-dark</code> exported as <code>css</code>. Uses the <code>org-html-htmlize-generate-css</code> to generate all the classes that aligns to the <code>org-mode</code> exports.</p> <h2 id="how-to-use-it">How to use it</h2> <p>The style are distribute as <code>node_modules</code> so you would need <code>npm</code> to install them. These styles works with the <code>org-html-export-to-html</code> function but you might need some settings to make sure that would work on your setup please make sure that your <code>org-publish</code> would set the <code>htmlize</code> to <code>css</code>.</p> <pre><code>#+BIND: org-html-htmlize-output-type (&quot;css&quot;)</code></pre> <p>Additionally we don’t want to use the default <code>css</code> provided by org mode so another header to add would be:</p> <pre><code>#+OPTIONS: html-style:nil</code></pre> <p>This package is heavily inspired by <a href="https://github.com/gongzhitaao/orgcss">orgcss</a></p> </div> <div id="outline-container-sec:org-templates" class="outline-3"> <h3 id="sec:org-templates">Org Templates</h3> <div class="outline-text-3" id="text-sec:org-templates"> <p> The following is my org file template for blogging. </p> <div class="org-src-container"> <pre class="src src-org"><span class="org-org-document-info-keyword">#+TITLE:</span> <span class="org-org-document-title">Article Title Goes Here</span>
 <span class="org-org-meta-line">#+OPTIONS: toc:nil num:3 H:4 ^:nil pri:t</span>
 
 <span class="org-org-block-begin-line">#+BEGIN_abstract</span>
@@ -38,305 +22,49 @@ Your content goes here.
 
 <span class="org-comment"># This is an automatically generated section if you use footnote.</span>
 <span class="org-org-level-1">* Footnotes</span>
-</pre>
-</div> <p>
-With all these setup, only one thing is left, i.e., tweaking the styles of
-exported html. By default, The HTML exporter assigns some <a href="http://orgmode.org/manual/CSS-support.html">special CSS classes</a>
-to appropriate parts of the document and your style specifications may change
-these, in addition to any of the standard classes like for headlines, tables,
-etc. The list is actually not complete, you may want to export a test org file
-and read the source of exported html file to find out what classes are
-available. The current page shows off my org.css. Some other good styles for
-org-exported html can be found on <a href="http://orgmode.org/">http://orgmode.org/</a>,
-<a href="http://doc.norang.ca/org-mode.html">http://doc.norang.ca/org-mode.html</a> and etc.
-</p>
-</div>
-</div>
-</div> <div id="outline-container-sec:demo" class="outline-2">
-<h2 id="sec:demo">Demo</h2>
-<div class="outline-text-2" id="text-sec:demo">
-<p>
-<span class="timestamp-wrapper"><span class="timestamp">&lt;2015-11-09 Mon 14:41&gt;</span></span>
-</p> <p>
-We use <a href="https://en.wikipedia.org/wiki/Lorem_ipsum">Lorem ipsum</a> text to demonstrate all elements you would expect to see in
-the org-exported HTML pages. Note however that the <code>.title</code>, <code>.subtitle</code> and
-<code>#postamble</code> element are not included in this section.
-</p>
-</div> <div id="outline-container-orgd576583" class="outline-3">
-<h3 id="orgd576583"><span class="todo TODO">TODO</span> Title with TODO</h3>
-</div> <div id="outline-container-orgcecede4" class="outline-3">
-<h3 id="orgcecede4"><span class="done DONE">DONE</span> Title with DONE</h3>
-</div> <div id="outline-container-orge08b5a5" class="outline-3">
-<h3 id="orge08b5a5">Title with Priority</h3>
-</div> <div id="outline-container-org0c04602" class="outline-3">
-<h3 id="org0c04602">Title with Tag&#xa0;&#xa0;&#xa0;<span class="tag"><span class="tag0">tag0</span>&#xa0;<span class="tag1">tag1</span></span></h3>
-</div> <div id="outline-container-orgab18987" class="outline-3">
-<h3 id="orgab18987">Miscellaneous</h3>
-<div class="outline-text-3" id="text-orgab18987">
-</div>
-<div id="outline-container-org1369ee1" class="outline-4">
-<h4 id="org1369ee1">Table</h4>
-<div class="outline-text-4" id="text-org1369ee1">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption class="t-above"><span class="table-number">Table 1:</span> Table Caption</caption> <colgroup>
-<col class="org-right"> <col class="org-right"> <col class="org-right"> <col class="org-right"> <col class="org-right"> <col class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-right">\(N\)</th>
-<th scope="col" class="org-right">\(N^2\)</th>
-<th scope="col" class="org-right">\(N^3\)</th>
-<th scope="col" class="org-right">\(N^4\)</th>
-<th scope="col" class="org-right">\(\sqrt n\)</th>
-<th scope="col" class="org-right">\(\sqrt[4]N\)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-</tr> <tr>
-<td class="org-right">2</td>
-<td class="org-right">4</td>
-<td class="org-right">8</td>
-<td class="org-right">16</td>
-<td class="org-right">1.4142</td>
-<td class="org-right">1.1892</td>
-</tr> <tr>
-<td class="org-right">3</td>
-<td class="org-right">9</td>
-<td class="org-right">27</td>
-<td class="org-right">81</td>
-<td class="org-right">1.7321</td>
-<td class="org-right">1.3161</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div> <div id="outline-container-org2bcccc1" class="outline-4">
-<h4 id="org2bcccc1">List</h4>
-<div class="outline-text-4" id="text-org2bcccc1">
-</div>
-<ul class="org-ul">
-<li><a id="org137a9aa"></a>The ordered list<br>
-<div class="outline-text-5" id="text-org137a9aa">
-<ol class="org-ol">
-<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-<li>Donec et massa sit amet ligula maximus feugiat.</li>
-<li>Morbi consequat orci et tincidunt sagittis.</li>
-</ol>
-</div>
-</li> <li><a id="orgd2dc1f0"></a>Unordered list<br>
-<div class="outline-text-5" id="text-orgd2dc1f0">
-<ul class="org-ul">
-<li>Aliquam non metus nec elit pellentesque scelerisque.</li>
-<li>In accumsan nunc ac orci varius hendrerit.</li>
-<li>Suspendisse non eros eu nisi finibus maximus.</li>
-</ul>
-</div>
-</li> <li><a id="org2d84dd1"></a>Definition list<br>
-<div class="outline-text-5" id="text-org2d84dd1">
-<dl class="org-dl">
-<dt>Lorem ipsum</dt><dd>dolor sit amet, consectetur adipiscing elit. Mauris laoreet
-sollicitudin venenatis. Duis sed consequat dolor.</dd>
-<dt>Etiam feugiat</dt><dd>pharetra sapien et semper. Nunc ornare lacus sit amet massa
-auctor, vitae aliquam eros interdum. Mauris arcu ante, imperdiet vel purus
-ac, bibendum faucibus diam. Ut blandit nec mi at ultricies. Donec eget
-mattis nisl. In sed nibh felis. Cras quis convallis orci.</dd>
-<dt>Sed aliquam</dt><dd>odio sed faucibus aliquam, arcu augue elementum justo, ut
-vulputate ligula sem in augue. Maecenas ante felis, pellentesque auctor
-semper non, eleifend quis ante. Fusce enim orci, suscipit ac dapibus et,
-fermentum eu tortor. Duis in facilisis ante, quis faucibus dolor. Etiam
-maximus lorem quis accumsan vehicula.</dd>
-</dl>
-</div>
-</li>
-</ul>
-</div> <div id="outline-container-org5870f37" class="outline-4">
-<h4 id="org5870f37">Picture</h4>
-<div class="outline-text-4" id="text-org5870f37">
-<p>
-And a really wide picture.
-</p>
-</div>
-</div> <div id="outline-container-org9a0e896" class="outline-4">
-<h4 id="org9a0e896">Math</h4>
-<div class="outline-text-4" id="text-org9a0e896">
-\begin{align}
-\mathcal{F}(a) &= \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z - a}\,dz\\
-\int_D (\nabla\cdot \mathcal{F})\,dV &=\int_{\partial D}\mathcal{F}\cdot n\, dS
-\end{align}
-</div>
-</div>
-</div>
-</div> <div id="outline-container-sec:known-issues" class="outline-2">
-<h2 id="sec:known-issues">Known Issues</h2>
-<div class="outline-text-2" id="text-sec:known-issues">
-<p>
-The citation exporter, <code>ox-bibtex</code>, does NOT work seamlessly. As of <code>Org-mode
-8.3.2</code>, I have the following issues.
-</p>
-</div> <div id="outline-container-sec:dangling-element" class="outline-3">
-<h3 id="sec:dangling-element"><del>Dangling Element</del>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solved">solved</span></span></h3>
-<div class="outline-text-3" id="text-sec:dangling-element">
-<p>
-The lisp function <code>insert-file-contents</code> used in <code>ox-bibtex</code> does not move point
-and insertion-marker to the end of inserted text (I'm not sure it is a bug or an
-intention). The result is that the citation is a dangling table not included in
-the bibliography div.
-</p> <p>
-The expected result is
-</p> <div class="org-src-container">
-<pre class="src src-html">&lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"bibliography"</span>&gt;
+</pre> </div> <p> With all these setup, only one thing is left, i.e., tweaking the styles of exported html. By default, The HTML exporter assigns some <a href="http://orgmode.org/manual/CSS-support.html">special CSS classes</a> to appropriate parts of the document and your style specifications may change these, in addition to any of the standard classes like for headlines, tables, etc. The list is actually not complete, you may want to export a test org file and read the source of exported html file to find out what classes are available. The current page shows off my org.css. Some other good styles for org-exported html can be found on <a href="http://orgmode.org/">http://orgmode.org/</a>, <a href="http://doc.norang.ca/org-mode.html">http://doc.norang.ca/org-mode.html</a> and etc. </p> </div> </div> </div> <div id="outline-container-sec:demo" class="outline-2"> <h2 id="sec:demo">Demo</h2> <div class="outline-text-2" id="text-sec:demo"> <p> <span class="timestamp-wrapper"><span class="timestamp">&lt;2015-11-09 Mon 14:41&gt;</span></span> </p> <p> We use <a href="https://en.wikipedia.org/wiki/Lorem_ipsum">Lorem ipsum</a> text to demonstrate all elements you would expect to see in the org-exported HTML pages. Note however that the <code>.title</code>, <code>.subtitle</code> and <code>#postamble</code> element are not included in this section. </p> </div> <div id="outline-container-org2c2ffd7" class="outline-3"> <h3 id="org2c2ffd7"><span class="todo TODO">TODO</span> Title with TODO</h3> </div> <div id="outline-container-org477979d" class="outline-3"> <h3 id="org477979d"><span class="done DONE">DONE</span> Title with DONE</h3> </div> <div id="outline-container-org6c8a09b" class="outline-3"> <h3 id="org6c8a09b">Title with Priority</h3> </div> <div id="outline-container-org46a2b8c" class="outline-3"> <h3 id="org46a2b8c">Title with Tag&#xa0;&#xa0;&#xa0;<span class="tag"><span class="tag0">tag0</span>&#xa0;<span class="tag1">tag1</span></span></h3> </div> <div id="outline-container-org211f488" class="outline-3"> <h3 id="org211f488">Miscellaneous</h3> <div class="outline-text-3" id="text-org211f488"> </div> <div id="outline-container-orgf96f444" class="outline-4"> <h4 id="orgf96f444">Table</h4> <div class="outline-text-4" id="text-orgf96f444"> <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"> <caption class="t-above"><span class="table-number">Table 1:</span> Table Caption</caption> <colgroup> <col class="org-right"> <col class="org-right"> <col class="org-right"> <col class="org-right"> <col class="org-right"> <col class="org-right"> </colgroup> <thead> <tr> <th scope="col" class="org-right">\(N\)</th> <th scope="col" class="org-right">\(N^2\)</th> <th scope="col" class="org-right">\(N^3\)</th> <th scope="col" class="org-right">\(N^4\)</th> <th scope="col" class="org-right">\(\sqrt n\)</th> <th scope="col" class="org-right">\(\sqrt[4]N\)</th> </tr> </thead> <tbody> <tr> <td class="org-right">1</td> <td class="org-right">1</td> <td class="org-right">1</td> <td class="org-right">1</td> <td class="org-right">1</td> <td class="org-right">1</td> </tr> <tr> <td class="org-right">2</td> <td class="org-right">4</td> <td class="org-right">8</td> <td class="org-right">16</td> <td class="org-right">1.4142</td> <td class="org-right">1.1892</td> </tr> <tr> <td class="org-right">3</td> <td class="org-right">9</td> <td class="org-right">27</td> <td class="org-right">81</td> <td class="org-right">1.7321</td> <td class="org-right">1.3161</td> </tr> </tbody> </table> </div> </div> <div id="outline-container-org81df115" class="outline-4"> <h4 id="org81df115">List</h4> <div class="outline-text-4" id="text-org81df115"> </div> <ul class="org-ul"> <li><a id="org24b3025"></a>The ordered list<br> <div class="outline-text-5" id="text-org24b3025"> <ol class="org-ol"> <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li> <li>Donec et massa sit amet ligula maximus feugiat.</li> <li>Morbi consequat orci et tincidunt sagittis.</li> </ol> </div> </li> <li><a id="org81b20ce"></a>Unordered list<br> <div class="outline-text-5" id="text-org81b20ce"> <ul class="org-ul"> <li>Aliquam non metus nec elit pellentesque scelerisque.</li> <li>In accumsan nunc ac orci varius hendrerit.</li> <li>Suspendisse non eros eu nisi finibus maximus.</li> </ul> </div> </li> <li><a id="orgfe81a0c"></a>Definition list<br> <div class="outline-text-5" id="text-orgfe81a0c"> <dl class="org-dl"> <dt>Lorem ipsum</dt><dd>dolor sit amet, consectetur adipiscing elit. Mauris laoreet sollicitudin venenatis. Duis sed consequat dolor.</dd> <dt>Etiam feugiat</dt><dd>pharetra sapien et semper. Nunc ornare lacus sit amet massa auctor, vitae aliquam eros interdum. Mauris arcu ante, imperdiet vel purus ac, bibendum faucibus diam. Ut blandit nec mi at ultricies. Donec eget mattis nisl. In sed nibh felis. Cras quis convallis orci.</dd> <dt>Sed aliquam</dt><dd>odio sed faucibus aliquam, arcu augue elementum justo, ut vulputate ligula sem in augue. Maecenas ante felis, pellentesque auctor semper non, eleifend quis ante. Fusce enim orci, suscipit ac dapibus et, fermentum eu tortor. Duis in facilisis ante, quis faucibus dolor. Etiam maximus lorem quis accumsan vehicula.</dd> </dl> </div> </li> </ul> </div> <div id="outline-container-org896d1e6" class="outline-4"> <h4 id="org896d1e6">Picture</h4> <div class="outline-text-4" id="text-org896d1e6"> <p> And a really wide picture. </p> </div> </div> <div id="outline-container-org6b8d33a" class="outline-4"> <h4 id="org6b8d33a">Math</h4> <div class="outline-text-4" id="text-org6b8d33a"> \begin{align} \mathcal{F}(a) &= \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z - a}\,dz\\ \int_D (\nabla\cdot \mathcal{F})\,dV &=\int_{\partial D}\mathcal{F}\cdot n\, dS \end{align} </div> </div> </div> </div> <div id="outline-container-sec:known-issues" class="outline-2"> <h2 id="sec:known-issues">Known Issues</h2> <div class="outline-text-2" id="text-sec:known-issues"> <p> The citation exporter, <code>ox-bibtex</code>, does NOT work seamlessly. As of <code>Org-mode 8.3.2</code>, I have the following issues. </p> </div> <div id="outline-container-sec:dangling-element" class="outline-3"> <h3 id="sec:dangling-element"><del>Dangling Element</del>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solved">solved</span></span></h3> <div class="outline-text-3" id="text-sec:dangling-element"> <p> The lisp function <code>insert-file-contents</code> used in <code>ox-bibtex</code> does not move point and insertion-marker to the end of inserted text (I'm not sure it is a bug or an intention). The result is that the citation is a dangling table not included in the bibliography div. </p> <p> The expected result is </p> <div class="org-src-container"> <pre class="src src-html">&lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"bibliography"</span>&gt;
   &lt;<span class="org-function-name">h2</span>&gt;<span class="org-underline"><span class="org-bold-italic">Bibliography</span></span>&lt;/<span class="org-function-name">h2</span>&gt;
   &lt;<span class="org-function-name">table</span>&gt;
-  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">Citation content goes here </span><span class="org-comment-delimiter">--&gt;</span>
+  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">Citation content goes here</span><span class="org-comment-delimiter"> --&gt;</span>
   &lt;/<span class="org-function-name">table</span>&gt;
 &lt;/<span class="org-function-name">div</span>&gt;
-</pre>
-</div> <p>
-But we got
-</p> <div class="org-src-container">
-<pre class="src src-html">&lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"bibliography"</span>&gt;
+</pre> </div> <p> But we got </p> <div class="org-src-container"> <pre class="src src-html">&lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"bibliography"</span>&gt;
   &lt;<span class="org-function-name">h2</span>&gt;<span class="org-underline"><span class="org-bold-italic">Bibliography</span></span>&lt;/<span class="org-function-name">h2</span>&gt;
 &lt;/<span class="org-function-name">div</span>&gt;
 &lt;<span class="org-function-name">table</span>&gt;
-<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">Citation content goes here </span><span class="org-comment-delimiter">--&gt;</span>
+<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">Citation content goes here</span><span class="org-comment-delimiter"> --&gt;</span>
 &lt;/<span class="org-function-name">table</span>&gt;
-</pre>
-</div> <p>
-Unless a patch is submitted, we may need to manually adjust this weird result.
-</p>
-</div>
-</div> <div id="outline-container-sec:bibliograph-in-wrong-section" class="outline-3">
-<h3 id="sec:bibliograph-in-wrong-section"><del>Bibliography in Wrong Section</del>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solved">solved</span></span></h3>
-<div class="outline-text-3" id="text-sec:bibliograph-in-wrong-section">
-<p>
-The exported bibliography is always included in some other section div instead
-of a stand-lone section.
-</p> <p>
-The expected result is
-</p> <div class="org-src-container">
-<pre class="src src-html">&lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"outline-container-1"</span> <span class="org-variable-name">class</span>=<span class="org-string">"outline-2"</span>&gt;
-  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">section 1 </span><span class="org-comment-delimiter">--&gt;</span>
+</pre> </div> <p> Unless a patch is submitted, we may need to manually adjust this weird result. </p> </div> </div> <div id="outline-container-sec:bibliograph-in-wrong-section" class="outline-3"> <h3 id="sec:bibliograph-in-wrong-section"><del>Bibliography in Wrong Section</del>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solved">solved</span></span></h3> <div class="outline-text-3" id="text-sec:bibliograph-in-wrong-section"> <p> The exported bibliography is always included in some other section div instead of a stand-lone section. </p> <p> The expected result is </p> <div class="org-src-container"> <pre class="src src-html">&lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"outline-container-1"</span> <span class="org-variable-name">class</span>=<span class="org-string">"outline-2"</span>&gt;
+  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">section 1</span><span class="org-comment-delimiter"> --&gt;</span>
 &lt;/<span class="org-function-name">div</span>&gt;
 &lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"outline-container-2"</span> <span class="org-variable-name">class</span>=<span class="org-string">"outline-2"</span>&gt;
-  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">section 2 </span><span class="org-comment-delimiter">--&gt;</span>
+  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">section 2</span><span class="org-comment-delimiter"> --&gt;</span>
 &lt;/<span class="org-function-name">div</span>&gt;
 &lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"outline-container-3"</span> <span class="org-variable-name">class</span>=<span class="org-string">"outline-2"</span>&gt;
-  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">section 3 </span><span class="org-comment-delimiter">--&gt;</span>
+  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">section 3</span><span class="org-comment-delimiter"> --&gt;</span>
 &lt;/<span class="org-function-name">div</span>&gt;
 &lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"bibliography"</span>&gt;
-  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">bibliography goes here </span><span class="org-comment-delimiter">--&gt;</span>
+  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">bibliography goes here</span><span class="org-comment-delimiter"> --&gt;</span>
 &lt;/<span class="org-function-name">div</span>&gt;
-</pre>
-</div> <p>
-But we got
-</p> <div class="org-src-container">
-<pre class="src src-html">&lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"outline-container-1"</span> <span class="org-variable-name">class</span>=<span class="org-string">"outline-2"</span>&gt;
-  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">section 1 </span><span class="org-comment-delimiter">--&gt;</span>
+</pre> </div> <p> But we got </p> <div class="org-src-container"> <pre class="src src-html">&lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"outline-container-1"</span> <span class="org-variable-name">class</span>=<span class="org-string">"outline-2"</span>&gt;
+  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">section 1</span><span class="org-comment-delimiter"> --&gt;</span>
 &lt;/<span class="org-function-name">div</span>&gt;
 &lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"outline-container-2"</span> <span class="org-variable-name">class</span>=<span class="org-string">"outline-2"</span>&gt;
-  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">section 2 </span><span class="org-comment-delimiter">--&gt;</span>
+  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">section 2</span><span class="org-comment-delimiter"> --&gt;</span>
 &lt;/<span class="org-function-name">div</span>&gt;
 &lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"outline-container-3"</span> <span class="org-variable-name">class</span>=<span class="org-string">"outline-2"</span>&gt;
-  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">section 3 </span><span class="org-comment-delimiter">--&gt;</span>
+  <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">section 3</span><span class="org-comment-delimiter"> --&gt;</span>
   &lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"bibliography"</span>&gt;
-    <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">bibliography goes here </span><span class="org-comment-delimiter">--&gt;</span>
+    <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">bibliography goes here</span><span class="org-comment-delimiter"> --&gt;</span>
   &lt;/<span class="org-function-name">div</span>&gt;
 &lt;/<span class="org-function-name">div</span>&gt;
-</pre>
-</div> <p>
-The problem is that the <code>#+BIBLIOGRAPHY</code> command is always ignored unless it is
-belonged to a section. <del>This is due to the internal implementation of keyword</del>
-<del>parser of <code>ox-html</code>. Currently hacking some post-processing code is the only</del>
-<del>solution if you do not want to do it manually</del>.
-</p> <p>
-This problem is solved as follows.
-</p> <ol class="org-ol">
-<li><p>
-Add the following snippet to your <code>init.el</code>
-</p> <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ox-extra</span>)
+</pre> </div> <p> The problem is that the <code>#+BIBLIOGRAPHY</code> command is always ignored unless it is belonged to a section. <del>This is due to the internal implementation of keyword</del> <del>parser of <code>ox-html</code>. Currently hacking some post-processing code is the only</del> <del>solution if you do not want to do it manually</del>. </p> <p> This problem is solved as follows. </p> <ol class="org-ol"> <li><p> Add the following snippet to your <code>init.el</code> </p> <div class="org-src-container"> <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ox-extra</span>)
 (ox-extras-activate '(ignore-headlines))
-</pre>
-</div></li> <li>adding <code>ignore</code> tag to whichever headline you want to ignore. Note that this
-is different from the <code>COMMENT</code> in Org mode in that <code>COMMENT</code> ignores the
-head and contents in its section, while <code>ignore</code> only ignores the headline
-but keeps the contents when exporting. See the above template.</li>
-</ol>
-</div>
-</div> <div id="outline-container-sec:wrong-back-reference" class="outline-3">
-<h3 id="sec:wrong-back-reference">Wrong Back Reference</h3>
-<div class="outline-text-3" id="text-sec:wrong-back-reference">
-<p>
-The links generated by <code>ox-bibtex</code> is also troublesome. Given <code>ref.bib</code>,
-<code>bibtex2html</code> will generate two files, <code>reb_bib.html</code> and <code>ref.html</code>. The
-utility <code>ox-bibtex</code> directly inserts contents of <code>ref.html</code> to the current
-exported html. Now when you click links in the exported html, you will be
-directed to <code>ref_bib.html</code>. And when expecting to get back to the exported html
-by clicking links in <code>ref_bib.html</code>, you will be instead directed to <code>ref.html</code>.
-My solution is to <del>remove the bibliograph source with <code>option:-nobibsource</code></del>
-replace the link in <code>ref_bib.html</code> with when compiling the HTML (see this
-<a href="https://github.com/gongzhitaao/orgcss/blob/master/gulpfile.js#L49">gulpfile.js</a>), it is a hacky way though.
-</p>
-</div>
-</div> <div id="outline-container-h2-fci-mode-issue" class="outline-3">
-<h3 id="h2-fci-mode-issue"><code>fci-mode</code> Issue</h3>
-<div class="outline-text-3" id="text-h2-fci-mode-issue">
-<p>
-If you use <a href="https://github.com/alpaker/Fill-Column-Indicator"> <code>fci-mode</code> </a>, and it is turned on in the major code of your
-to-be-exported source code section, you will notice some dummy characters
-at each newline (as of <code>Org-v9.3.1</code>) as following.
-</p> <div class="org-src-container">
-<pre class="src src-c++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>???
+</pre> </div></li> <li>adding <code>ignore</code> tag to whichever headline you want to ignore. Note that this is different from the <code>COMMENT</code> in Org mode in that <code>COMMENT</code> ignores the head and contents in its section, while <code>ignore</code> only ignores the headline but keeps the contents when exporting. See the above template.</li> </ol> </div> </div> <div id="outline-container-sec:wrong-back-reference" class="outline-3"> <h3 id="sec:wrong-back-reference">Wrong Back Reference</h3> <div class="outline-text-3" id="text-sec:wrong-back-reference"> <p> The links generated by <code>ox-bibtex</code> is also troublesome. Given <code>ref.bib</code>, <code>bibtex2html</code> will generate two files, <code>reb_bib.html</code> and <code>ref.html</code>. The utility <code>ox-bibtex</code> directly inserts contents of <code>ref.html</code> to the current exported html. Now when you click links in the exported html, you will be directed to <code>ref_bib.html</code>. And when expecting to get back to the exported html by clicking links in <code>ref_bib.html</code>, you will be instead directed to <code>ref.html</code>. My solution is to <del>remove the bibliograph source with <code>option:-nobibsource</code></del> replace the link in <code>ref_bib.html</code> with when compiling the HTML (see this <a href="https://github.com/gongzhitaao/orgcss/blob/master/gulpfile.js#L49">gulpfile.js</a>), it is a hacky way though. </p> </div> </div> <div id="outline-container-h2-fci-mode-issue" class="outline-3"> <h3 id="h2-fci-mode-issue"><code>fci-mode</code> Issue</h3> <div class="outline-text-3" id="text-h2-fci-mode-issue"> <p> If you use <a href="https://github.com/alpaker/Fill-Column-Indicator"> <code>fci-mode</code> </a>, and it is turned on in the major code of your to-be-exported source code section, you will notice some dummy characters at each newline (as of <code>Org-v9.3.1</code>) as following. </p> <div class="org-src-container"> <pre class="src src-c++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>???
 <span class="org-keyword">using</span> <span class="org-constant">namesapce</span> std;???
 ???
 <span class="org-type">int</span> main()???
 {???
   <span class="org-keyword">return</span> 0;???
 }???
-</pre>
-</div> <p>
-The workaround to this issue: <a href="https://emacs.stackexchange.com/q/44361">https://emacs.stackexchange.com/q/44361</a> and some
-discussions on <a href="https://lists.gnu.org/archive/html/emacs-orgmode/2017-08/msg00342.html">emacs-orgmode maillist</a>. I did not have this issue with previous
-version of <code>org-mode</code> and <code>fci-mode</code>. Simply turning off the <code>fci-mode</code> for major
-mode solves the problem.
-</p>
-</div>
-</div>
-</div> <div id="outline-container-sec:conclusion" class="outline-2">
-<h2 id="sec:conclusion">Conclusion</h2>
-<div class="outline-text-2" id="text-sec:conclusion">
-<p>
-This article essentially demonstrates my stylesheet for org-exported html file
-without going into details about the publishing process which requires some
-knowledge about Emacs and org mode. There are some dangling issues around the
-citation with <code>ox-bibtex</code>, to which the simple solution is to use links instead
-of citations, if possible. Otherwise, hacking some post-processing code is
-necessary.
-</p>
-</div>
-</div> <div id="outline-container-orgf05fd22" class="outline-2">
-<h2 id="orgf05fd22">Credits</h2>
-<div class="outline-text-2" id="text-orgf05fd22">
-<p>
-Some styles are borrowed from the following projects.
-</p> <ol class="org-ol">
-<li><a href="https://github.com/fniessen/org-html-themes">fniessen/org-html-themes</a></li>
-<li><a href="https://gist.github.com/mowen/326524">mowen/gist326524</a></li>
-<li><a href="http://demo.thi.ng/org-spec/">org-spec</a></li>
-<li><a href="http://doc.norang.ca/org-mode.html">Organize Your Life In Plain Text!</a></li>
-<li><a href="https://github.com/thomasf/solarized-cs">thomasf/solarized-css</a></li>
-<li><a href="http://orgmode.org/worg/org-web.html">Web Pages Made with Org-Mode</a></li>
-</ol>
-</div>
-</div> <div id="outline-container-orgd95f845" class="outline-2">
-<h2 id="orgd95f845">References&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ignore">ignore</span></span></h2>
-<div class="outline-text-2" id="text-orgd95f845">
-</div>
-</div> </div> </div> <footer> Copyright © 2000/2021 Mauro Mandracchia<br> Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.<br> Verbatim copying and redistribution of any of the photos is permitted under the <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Noderivs Nocommercial license version 3.0</a> or later. </footer> </div> </body></html>
+</pre> </div> <p> The workaround to this issue: <a href="https://emacs.stackexchange.com/q/44361">https://emacs.stackexchange.com/q/44361</a> and some discussions on <a href="https://lists.gnu.org/archive/html/emacs-orgmode/2017-08/msg00342.html">emacs-orgmode maillist</a>. I did not have this issue with previous version of <code>org-mode</code> and <code>fci-mode</code>. Simply turning off the <code>fci-mode</code> for major mode solves the problem. </p> </div> </div> </div> <div id="outline-container-sec:conclusion" class="outline-2"> <h2 id="sec:conclusion">Conclusion</h2> <div class="outline-text-2" id="text-sec:conclusion"> <p> This article essentially demonstrates my stylesheet for org-exported html file without going into details about the publishing process which requires some knowledge about Emacs and org mode. There are some dangling issues around the citation with <code>ox-bibtex</code>, to which the simple solution is to use links instead of citations, if possible. Otherwise, hacking some post-processing code is necessary. </p> </div> </div> <div id="outline-container-org0b47c9f" class="outline-2"> <h2 id="org0b47c9f">Credits</h2> <div class="outline-text-2" id="text-org0b47c9f"> <p> Some styles are borrowed from the following projects. </p> <ol class="org-ol"> <li><a href="https://github.com/fniessen/org-html-themes">fniessen/org-html-themes</a></li> <li><a href="https://gist.github.com/mowen/326524">mowen/gist326524</a></li> <li><a href="http://demo.thi.ng/org-spec/">org-spec</a></li> <li><a href="http://doc.norang.ca/org-mode.html">Organize Your Life In Plain Text!</a></li> <li><a href="https://github.com/thomasf/solarized-cs">thomasf/solarized-css</a></li> <li><a href="http://orgmode.org/worg/org-web.html">Web Pages Made with Org-Mode</a></li> </ol> </div> </div> <div id="outline-container-orgd8f898b" class="outline-2"> <h2 id="orgd8f898b">References&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ignore">ignore</span></span></h2> <div class="outline-text-2" id="text-orgd8f898b"> </div> </div> </div> </div> <footer> Copyright © 2000/2022 Mauro Mandracchia<br> Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.<br> Verbatim copying and redistribution of any of the photos is permitted under the <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Noderivs Nocommercial license version 3.0</a> or later. </footer> </div> </body></html>
