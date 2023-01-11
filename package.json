@@ -30,7 +30,7 @@
     "kibbeling": "^1.0.4",
     "marked": "^0.3.6",
     "nuxt": "^0.10.0",
-    "pm2": "^2.5.0",
+    "pm2": "^2.10.4",
     "showdown": "^1.6.4",
     "showdown-youtube": "^1.2.1",
     "underscore": "^1.8.3",
